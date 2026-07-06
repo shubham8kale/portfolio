@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# personal working docs — kept local; the bot reads content/profile.md instead
+/PROFILE_BOT_KNOWLEDGE.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
