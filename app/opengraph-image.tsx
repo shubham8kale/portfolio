@@ -23,16 +23,18 @@ export default function OpengraphImage() {
       >
         <div
           style={{
+            display: "flex",
             fontSize: 28,
             letterSpacing: "0.25em",
             textTransform: "uppercase",
             color: "#1f6b3b",
           }}
         >
-          {site.name} — {site.role}
+          {`${site.name} — ${site.role}`}
         </div>
         <div
           style={{
+            display: "flex",
             fontSize: 72,
             lineHeight: 1.1,
             marginTop: 40,

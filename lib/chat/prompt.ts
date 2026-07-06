@@ -7,10 +7,12 @@ let cachedPrompt: string | null = null;
 export function getSystemPrompt(): string {
   if (cachedPrompt) return cachedPrompt;
 
-  const profile = fs.readFileSync(
-    path.join(process.cwd(), "content", "profile.md"),
-    "utf-8",
-  );
+  // HTML comments are editor guidance (incl. things the bot must never
+  // mention) — strip them so they never enter the model's context at all.
+  const profile = fs
+    .readFileSync(path.join(process.cwd(), "content", "profile.md"), "utf-8")
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .trim();
 
   cachedPrompt = `You are the profile assistant on Shubham Kale's portfolio website. Visitors ask you about Shubham — his background, projects, skills, and interests.
 
