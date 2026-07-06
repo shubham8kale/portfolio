@@ -78,9 +78,16 @@ export const leadProjects: Project[] = [
       "TypeScript",
     ],
     links: [
-      // TODO(M0): replace with the exact repo URL and live demo URL.
-      { label: "Repository", href: "https://github.com/shubham8kale", kind: "repo" },
-      { label: "Live demo", href: "", kind: "demo" },
+      {
+        label: "Repository",
+        href: "https://github.com/shubham8kale/financial-research-agent",
+        kind: "repo",
+      },
+      {
+        label: "Live demo",
+        href: "https://financial-research-agent-pi.vercel.app/",
+        kind: "demo",
+      },
     ],
   },
   {
@@ -113,8 +120,11 @@ export const leadProjects: Project[] = [
     ],
     stack: ["Apache Kafka", "KRaft", "Docker", "Python", "NYISO data"],
     links: [
-      // TODO(M0): replace with the exact repo URL.
-      { label: "Repository", href: "https://github.com/shubham8kale", kind: "repo" },
+      {
+        label: "Repository",
+        href: "https://github.com/shubham8kale/grid-resilience",
+        kind: "repo",
+      },
     ],
   },
 ];
@@ -125,6 +135,25 @@ export type SecondaryProject = {
   href: string;
 };
 
-// TODO(M0): needs Shubham's list (name, one-liner, repo link each).
-// The section renders only when this is non-empty.
-export const secondaryProjects: SecondaryProject[] = [];
+// Numbers here (like the 150K F1 records) trace to Shubham's own project
+// write-ups. The section renders only when this is non-empty.
+export const secondaryProjects: SecondaryProject[] = [
+  {
+    title: "Football club analysis (2008–2016)",
+    oneLiner:
+      "A Tableau story dissecting a European club's seasons — goal breakdowns and how tactics moved the numbers, across two dashboards.",
+    href: "https://public.tableau.com/app/profile/shubham.kale4203/viz/cfg_final/Story1",
+  },
+  {
+    title: "Formula 1 lap-time prediction",
+    oneLiner:
+      "Lap-time models (Linear Regression, XGBoost) over 150K+ F1 lap records, plus K-means clustering of drivers into racing-style archetypes.",
+    href: "https://github.com/shubham8kale/Formula-1-Project",
+  },
+  {
+    title: "Product photography AI",
+    oneLiner:
+      "Background removal with rembg and Stable Diffusion inpainting to regenerate product-shot backgrounds from a prompt.",
+    href: "https://github.com/shubham8kale/Product-photography-AI",
+  },
+];
