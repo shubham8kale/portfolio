@@ -5,58 +5,59 @@
   lib/chat/prompt.ts), so notes here never enter the bot's context.
 
   Editing rules (never break these):
-  - No client names — domain descriptors only ("a healthcare client").
-  - Employer names are currently GENERICIZED pending Shubham's sign-off. If he
-    approves naming them, replace the descriptors below with the real names.
-  - No phone number. No work-authorization status.
-  - No metrics that don't also appear in content/projects.ts or trace to
-    Shubham's own project write-ups.
-  - Football stays generic — no club named.
-  - Never mention the Grid Resilience next-hour RandomForest experiment.
+  - EMPLOYER names may be named (Shubham's own jobs, public on his résumé).
+  - CLIENT names must NEVER appear — industry descriptors only ("a healthcare
+    client"). Shubham works at a consulting firm; the clients it serves are
+    confidential.
+  - No phone number. No work-authorization / visa status.
+  - No metrics that don't trace to Shubham's own material.
+  - Football clubs may be named (Shubham authored them into his bot knowledge).
+  - Never name or hint at the specific Grid Resilience negative-result model —
+    the "honest about failures" trait is fine; the failed model itself is not.
 -->
 
 # Shubham Kale — public profile
 
 ## Who he is
 
-- AI/Data Engineer with about 2 years of experience, based in New York, USA.
-- Builds large-scale ELT data pipelines and agentic RAG / LLM systems, with work spanning healthcare, finance, and insurance domains.
+- AI/Data Engineer with roughly two years of experience, based in New York, USA.
+- Builds production data platforms and agentic AI systems, with work spanning healthcare, insurance, and consumer-products domains.
+- Currently an Analytics Engineer building ELT pipelines, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
 - Open to Data Engineer, AI Engineer, Data Scientist, and Software Engineer roles.
 - Contact: 1842shubham@gmail.com · github.com/shubham8kale · linkedin.com/in/shubham8kale
-- What sets his work apart: honest evaluation and real deployment. He measures his systems and publishes the numbers instead of just claiming things work.
+- What sets his work apart: honest evaluation and real deployment. He measures his systems and publishes the numbers — an emphasis on honest evaluation over inflated claims.
 
 ## Education
 
-- Stony Brook University, New York — M.S. in Data Science (GPA 3.78/4), 2024–2025.
-- NMIMS University, Mumbai — B.Tech in Data Science (CGPA 3.56/4), 2019–2023.
+- Stony Brook University, New York — M.S. in Data Science (GPA 3.78/4).
+- NMIMS University, Mumbai — B.Tech in Data Science (CGPA 3.56/4).
 
 ## Experience
 
-Roughly two years across data engineering, analytics engineering, and applied
-ML. Client engagements are described by domain only — client names are
+Client engagements are described by industry only — client names are
 confidential and never shared.
 
-- **Analytics / Data Engineer (current, New York):** Builds production data platforms and BI for healthcare, insurance, and consumer-products clients. Engineered Dagster-orchestrated ELT pipelines moving millions of patient and financial records from Redshift into Snowflake; sped up extraction substantially with parallel multi-table ingestion, REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework used by several teams. Productionized scheduling on Airflow with pytest/httpx coverage, and handled data security and governance (AWS IAM policies, Secrets Manager, role-based Snowflake access, PII redaction). Shipped a Streamlit analytics platform used daily across multiple markets that compressed a multi-day Excel reporting cycle to same-day.
-- **Data Analyst intern (earlier, Mumbai):** Built an end-to-end RAG system with fine-tuned T5/BART models for automated KPI commentary over a large financial-records corpus, and automated a rule-based assignment engine that cut operational overhead.
-- **Quantitative Analyst intern (earlier, Mumbai):** Consolidated many database tables across PostgreSQL schemas with Python automation that removed hours of weekly manual reconciliation, and built regression and ensemble ML models for trade-execution and fraud-risk screening.
+- **Analytics Engineer, Quantegy Analytics (New York, current).** Builds production data platforms and BI for healthcare, insurance, and consumer-products clients. Engineered Dagster-orchestrated ELT pipelines moving millions of patient and financial records from Redshift into Snowflake; sped up extraction substantially with parallel multi-table ingestion, REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework used across teams. Productionized scheduling on Airflow with pytest/httpx coverage, and handled data security and governance (AWS IAM, Secrets Manager, role-based Snowflake access, PII redaction). Shipped a Streamlit analytics platform used daily across markets that compressed a multi-day Excel reporting cycle to same-day. He joined here as an intern and carried through part-time to full-time without a break, working across three client verticals at once.
+- **Data Analyst Intern, Mettler-Toledo (Mumbai).** Built an end-to-end RAG system with fine-tuned language models for automated KPI/report commentary, and a rule-based assignment engine that significantly cut manual allocation work.
+- **Quantitative Analyst Intern, Marcellus Investment Managers (Mumbai).** Owned database administration for a research environment end-to-end, and built statistical and machine-learning models for trade-execution optimization and fraud-risk screening.
 
 ## Project: Financial Research Agent (portfolio project, live demo available)
 
-- Agentic RAG system for research questions over SEC 10-K filings.
-- LangGraph ReAct agent whose tools are discovered at runtime through an MCP (Model Context Protocol) server, decoupling agent logic from tool implementations.
-- Retrieval over ChromaDB with roughly 67,000 indexed chunks from five companies' 10-K filings.
-- Evaluated with RAGAS using a separate judge model: 0.80 faithfulness and 0.80 context recall across question types.
-- Deployed as a two-service FastAPI + MCP setup on Docker Compose, with CI via GitHub Actions (lint, dry-run eval, pytest — no secrets required).
-- Next.js/TypeScript frontend with SSE token streaming.
+- Agentic RAG system that answers natural-language questions about SEC 10-K filings with source-grounded citations.
+- LangChain + LangGraph ReAct agent whose tools are discovered at runtime through a FastMCP (streamable-HTTP Model Context Protocol) server, decoupling agent logic from tool implementations.
+- Retrieval over ChromaDB with roughly 67,000 indexed chunks from five companies' 10-K filings; generation via the Gemini 2.5 Flash-Lite API.
+- Evaluated with a RAGAS harness using a separate judge model (to avoid quota contention): 0.80 faithfulness and 0.80 context recall.
+- Deployed as a two-service FastAPI + MCP microservice on Docker Compose, with CI via GitHub Actions.
+- Full-stack Next.js/TypeScript chat UI streaming answers live over Server-Sent Events.
 - Framed as a portfolio project with a live demo — a demonstration of engineering judgment, not a production system.
 
 ## Project: Grid Resilience (portfolio project)
 
-- Real-time anomaly detection over streaming electric-grid data.
-- Apache Kafka pipeline running on Docker in KRaft mode.
-- Data: roughly 89,000 NYISO forecast-vs-actual load records across all 11 NYISO zones.
-- He compared streaming detection against an offline pass over the same data and reported the agreement honestly: Cohen's kappa 0.52.
-- The point of the project is honest measurement of a streaming system, not inflated claims.
+- Real-time anomaly-detection system for the New York power grid.
+- Streams NYISO forecast-vs-actual load data — roughly 89,000 hourly records across all 11 NYISO zones — through Apache Kafka (Docker, KRaft mode).
+- Uses a causal rolling z-score detector with adaptive per-zone, per-hour-of-day thresholds.
+- Evaluated honestly against an offline statistical method: Cohen's kappa 0.52, recall 0.61 — explicitly avoiding the inflated-accuracy trap of rare-event detection.
+- Includes a Streamlit live dashboard, unit tests, and CI.
 
 ## Smaller projects
 
@@ -66,20 +67,21 @@ confidential and never shared.
 
 ## Skills
 
-Python, TypeScript, Java, SQL, Scala, R, Bash. Machine learning and deep
-learning (PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face). Generative
-AI: RAG, LLM agents, MCP, fine-tuning (LangChain, LangGraph). Data engineering:
-Spark, Kafka, Airflow, Dagster, dbt, Snowflake, Redshift, BigQuery, PostgreSQL,
-MongoDB. Cloud & infra: AWS (S3, Redshift, IAM), Azure, GCP, Docker, Kubernetes,
-GitHub Actions CI/CD. Backend & apps: FastAPI, Flask, Streamlit, Next.js, React,
-Pydantic, pytest, SSE streaming. Analytics: Tableau, Power BI, statistical
-analysis, A/B testing, time-series, causal inference.
+Python, SQL, TypeScript, Java, Scala, R, Bash. Data engineering: Snowflake,
+Redshift, BigQuery, PostgreSQL, MongoDB, Apache Kafka, Apache Airflow, Dagster,
+dbt, Spark. Generative AI: LangChain, LangGraph, FastMCP, ChromaDB, RAGAS, RAG,
+LLM agents, fine-tuning. ML/DL: PyTorch, TensorFlow, scikit-learn, XGBoost,
+Hugging Face. Cloud & infra: AWS (S3, Redshift, IAM), Azure, GCP, Docker,
+Kubernetes, GitHub Actions CI/CD. Apps & backend: FastAPI, Flask, Streamlit,
+Next.js, React, Pydantic, pytest, SSE streaming. Analytics: Tableau, Power BI,
+statistical analysis, A/B testing, time-series, causal inference.
 
 ## Beyond work
 
-- Big football fan — the tactics, the rhythm of a match, the culture around the game. He keeps his club allegiance off the record online; ask him in person.
-- Broad tech enthusiast — genuinely curious about technology well beyond the data stack.
-<!-- TODO(M0): add his current-curiosity specifics + any football detail once provided from the career command center. -->
+- **Football.** Follows the game closely as both a fan and a student of it. He supports Real Madrid, his local Pittsburgh Riverhound SC, and the India and Spain national teams — drawn to Spain for their possession-based style. A self-described tactics nerd who has played FIFA for years and competed in an amateur district-level league in India, he watches as much for shape and pressing structure as for the result.
+- **Broad tech curiosity.** Genuinely into technology well beyond the data stack. Current interests: LLM observability and tracing for agentic systems; multi-agent orchestration patterns and their failure modes; causal inference and A/B testing for real-world decision systems; layout-aware parsing of messy documents (tables, PDFs); running ML/agentic systems on Kubernetes at production depth; and the Model Context Protocol (MCP) ecosystem.
+- Outside of tech he's up for most things — hiking, dancing, trying new food — and brings that same hands-on curiosity to picking up new tools.
+- He's candid about what does and doesn't work, publishing honest metrics rather than inflated ones.
 
 ## About this assistant
 

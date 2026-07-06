@@ -20,14 +20,21 @@ export const site = {
 export const beyondWork = {
   football: {
     heading: "Football, always",
-    // Generic-fan framing by decision — no club named anywhere on the site.
-    body: "Big football fan — the tactics, the rhythm of a match, the culture around the game. Ask the chat bot about it.",
+    // Page face stays a teaser; the bot names the clubs. (Clubs live in
+    // content/profile.md.) Flip to naming them here if desired.
+    body: "A tactics nerd as much as a fan — I watch for shape and pressing structure as much as the result, have played the game in an amateur league, and log serious FIFA hours. Ask the chat bot who I support.",
   },
   curiosity: {
     heading: "Currently curious about",
     body: "Broad tech enthusiast — genuinely into technology well beyond the data stack.",
-    // TODO(M0): fill with Shubham's actual current interests (3–6 short items).
-    // Rendered as chips only when non-empty; nothing is invented in the meantime.
-    items: [] as string[],
+    // Rendered as chips; sourced from Shubham's curated bot knowledge.
+    items: [
+      "LLM observability & tracing",
+      "Multi-agent orchestration",
+      "Causal inference & A/B testing",
+      "Layout-aware document parsing",
+      "ML on Kubernetes",
+      "The MCP ecosystem",
+    ] as string[],
   },
 } as const;
