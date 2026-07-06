@@ -4,6 +4,7 @@ import { LeadProjects } from "@/components/sections/LeadProjects";
 import { SecondaryProjects } from "@/components/sections/SecondaryProjects";
 import { BeyondWork } from "@/components/sections/BeyondWork";
 import { Footer } from "@/components/sections/Footer";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -43,6 +44,7 @@ export default function Home() {
         <BeyondWork />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
