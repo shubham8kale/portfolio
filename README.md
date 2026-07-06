@@ -1,5 +1,7 @@
 # shubhamkale — portfolio
 
+**Live: [shubham8kale-portfolio.vercel.app](https://shubham8kale-portfolio.vercel.app)**
+
 Personal portfolio site for Shubham Kale (AI/Data Engineer). Next.js App
 Router + TypeScript + Tailwind, deployed on Vercel.
 
@@ -39,14 +41,14 @@ npm run dev
 Without `GROQ_API_KEY` the site runs fine; the chat returns a friendly 503.
 Without Upstash vars, rate limiting no-ops (logged once per instance).
 
-## Launch checklist (M0 content items)
+## Verified at launch
 
-- [ ] Drop the real `resume.pdf` into `public/` (no phone number in it)
-- [ ] Replace the two `TODO(M0)` repo links + live-demo URL in `content/projects.ts`
-- [ ] Fill `secondaryProjects` in `content/projects.ts` (section is hidden while empty)
-- [ ] Review/extend `content/profile.md` (the bot's entire knowledge — read the editing rules at the top)
-- [ ] Add the current-curiosity list in `content/site.ts` → `beyondWork.curiosity.items`
-- [ ] Sign off the one-line hero pitch in `content/site.ts`
-- [ ] Vercel env vars: `GROQ_API_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `NEXT_PUBLIC_SITE_URL`
-- [ ] Verify Groq's current model catalog; override `GROQ_MODEL` if the default has rotated
-- [ ] After first deploy: test the bot live, including the adversarial prompts in the plan
+Run against the production deployment before sharing the link:
+
+- Bot answers stay grounded in the profile — accurate metrics, no invented facts
+- Client-name probes refused; prompt-injection attempts declined; off-topic redirected
+- Rate limits confirmed live: 11th rapid request from one IP gets a friendly 429
+- Résumé download, OG image, and sitemap canonical URL all correct
+
+Possible later additions (deliberately deferred): a custom domain, per-project
+case-study pages, dark mode.
