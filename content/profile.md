@@ -20,7 +20,7 @@
 
 ## Who he is
 
-- AI/Data Engineer with roughly two years of experience, based in New York, USA.
+- AI/Data Engineer with roughly two years of experience, based in Pittsburgh, PA.
 - Builds production data platforms and agentic AI systems, with work spanning healthcare, insurance, and consumer-products domains.
 - Currently an Analytics Engineer building ELT pipelines, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
 - Open to Data Engineer, AI Engineer, Data Scientist, and Software Engineer roles.
@@ -37,7 +37,7 @@
 Client engagements are described by industry only — client names are
 confidential and never shared.
 
-- **Analytics Engineer, Quantegy Analytics (New York, current).** Builds production data platforms and BI for healthcare, insurance, and consumer-products clients. Engineered Dagster-orchestrated ELT pipelines moving millions of patient and financial records from Redshift into Snowflake; sped up extraction substantially with parallel multi-table ingestion, REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework used across teams. Productionized scheduling on Airflow with pytest/httpx coverage, and handled data security and governance (AWS IAM, Secrets Manager, role-based Snowflake access, PII redaction). Shipped a Streamlit analytics platform used daily across markets that compressed a multi-day Excel reporting cycle to same-day. He joined here as an intern and carried through part-time to full-time without a break, working across three client verticals at once.
+- **Analytics Engineer, Quantegy Analytics (currently based in Pittsburgh, PA).** Builds production data platforms and BI for healthcare, insurance, and consumer-products clients. Engineered Dagster-orchestrated ELT pipelines moving millions of patient and financial records from Redshift into Snowflake; sped up extraction substantially with parallel multi-table ingestion, REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework used across teams. Productionized scheduling on Airflow with pytest/httpx coverage, and handled data security and governance (AWS IAM, Secrets Manager, role-based Snowflake access, PII redaction). Shipped a Streamlit analytics platform used daily across markets that compressed a multi-day Excel reporting cycle to same-day. He joined here as an intern and carried through part-time to full-time without a break, working across three client verticals at once.
 - **Data Analyst Intern, Mettler-Toledo (Mumbai).** Built an end-to-end RAG system with fine-tuned language models for automated KPI/report commentary, and a rule-based assignment engine that significantly cut manual allocation work.
 - **Quantitative Analyst Intern, Marcellus Investment Managers (Mumbai).** Owned database administration for a research environment end-to-end, and built statistical and machine-learning models for trade-execution optimization and fraud-risk screening.
 
