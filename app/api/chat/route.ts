@@ -44,9 +44,11 @@ export async function POST(request: Request) {
     );
   }
 
+  // Prefer x-real-ip: it's set by the platform (Vercel) and can't be supplied
+  // by the client, unlike the leftmost x-forwarded-for entry on some hosts.
   const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     request.headers.get("x-real-ip") ??
+    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     "unknown";
   const limit = await checkRateLimit(ip);
   if (!limit.ok) {
@@ -77,6 +79,10 @@ export async function POST(request: Request) {
     return json(502, "The model is unavailable right now — try again shortly.");
   }
 
+  // If the visitor closes the panel/tab mid-answer, stop consuming the
+  // upstream stream instead of burning quota to completion.
+  request.signal.addEventListener("abort", () => stream.controller.abort());
+
   const encoder = new TextEncoder();
   const readable = new ReadableStream({
     async start(controller) {
@@ -91,12 +97,15 @@ export async function POST(request: Request) {
         }
         controller.enqueue(encoder.encode("data: [DONE]\n\n"));
       } catch (err) {
-        console.error("[chat] stream error", err);
-        controller.enqueue(
-          encoder.encode(
-            `data: ${JSON.stringify({ error: "The stream dropped — try again." })}\n\n`,
-          ),
-        );
+        // A client disconnect surfaces here as an abort — that's not an error.
+        if (!request.signal.aborted) {
+          console.error("[chat] stream error", err);
+          controller.enqueue(
+            encoder.encode(
+              `data: ${JSON.stringify({ error: "The stream dropped — try again." })}\n\n`,
+            ),
+          );
+        }
       } finally {
         controller.close();
       }
