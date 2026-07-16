@@ -14,9 +14,7 @@ export const site = {
   email: "1842shubham@gmail.com",
   github: "https://github.com/shubham8kale",
   linkedin: "https://linkedin.com/in/shubham8kale",
-  // Descriptive filename so the downloaded file is named well in a recruiter's
-  // downloads folder. Lives in public/.
-  resumePath: "/ShubhamKishorKale_Resume.pdf",
+  resumePath: "/resume.pdf",
 } as const;
 
 export const beyondWork = {

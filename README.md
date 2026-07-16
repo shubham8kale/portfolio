@@ -1,6 +1,6 @@
 # shubhamkale — portfolio
 
-**Live: [shubham8kale-portfolio.vercel.app](https://shubham8kale.vercel.app)**
+**Live: [shubham8kale.vercel.app](https://shubham8kale.vercel.app)**
 
 Personal portfolio site for Shubham Kale (AI/Data Engineer). Next.js App
 Router + TypeScript + Tailwind, deployed on Vercel.
