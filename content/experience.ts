@@ -18,7 +18,7 @@ export type Experience = {
 export const experience: Experience = {
   framing: "Current role - production GenAI + data platforms",
   role: "Analytics Engineer",
-  employer: "Quantegy Analytics · consulting - clients appear here by industry only",
+  employer: "Quantegy Analytics · Consulting",
   summary:
     "Client work across healthcare, insurance, and consumer products. The headline: an LLM feature real users rely on daily - plus the pipelines that feed it.",
   highlights: [
