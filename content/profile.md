@@ -37,7 +37,15 @@
 Client engagements are described by industry only — client names are
 confidential and never shared.
 
-- **Analytics Engineer, Quantegy Analytics (current role, remote).** Builds production data platforms and BI for healthcare, insurance, and consumer-products clients. Engineered Dagster-orchestrated ELT pipelines moving millions of patient and financial records from Redshift into Snowflake; sped up extraction substantially with parallel multi-table ingestion, REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework used across teams. Productionized scheduling on Airflow with pytest/httpx coverage, and handled data security and governance (AWS IAM, Secrets Manager, role-based Snowflake access, PII redaction). Shipped a Streamlit analytics platform used daily across markets that compressed a multi-day Excel reporting cycle to same-day. He joined here as an intern and carried through part-time to full-time without a break, working across three client verticals at once.
+- **Analytics Engineer, Quantegy Analytics (current role, remote).** Builds production data platforms, LLM features, and BI for healthcare, insurance, and consumer-products clients.
+  - Shipped an LLM-powered navigation assistant (Claude API) into a production analytics platform serving 50+ daily users across 5 markets, routing natural-language queries to the right dashboard via a structured page-catalog context.
+  - Delivered production Streamlit platforms for two clients: a healthcare platform that cut a 3-day Excel reporting cycle to same-day, and separately a correctional-healthcare app with per-county, group-based access control for county and sheriff's-office users.
+  - Engineered Dagster-orchestrated ELT pipelines ingesting 4M+ patient and financial records from 15+ Redshift tables into Snowflake, powering analytics across 3 healthcare markets.
+  - Owned end-to-end data engineering for a correctional-healthcare client: Dagster pipelines ingesting 120+ tables of vendor EHR and CSV data into structured Snowflake schemas across 15 counties.
+  - Resolved an extraction bottleneck via parallel multi-table ingestion (~5x throughput) with REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework adopted by 4+ teams.
+  - Productionized scheduling on Airflow with full pytest/httpx coverage validating 10M+ records across 10+ tables.
+  - Secured 2 client environments end to end: AWS IAM/VPN access policies, Secrets Manager credentials, role-based Snowflake access, and PII redaction of credit-card data.
+  - He joined here as an intern and carried through part-time to full-time without a break, working across three client verticals at once.
 - **Data Analyst Intern, Mettler-Toledo (Mumbai).** Built an end-to-end RAG system with fine-tuned language models for automated KPI/report commentary, and a rule-based assignment engine that significantly cut manual allocation work.
 - **Quantitative Analyst Intern, Marcellus Investment Managers (Mumbai).** Owned database administration for a research environment end-to-end, and built statistical and machine-learning models for trade-execution optimization and fraud-risk screening.
 
@@ -67,14 +75,15 @@ confidential and never shared.
 
 ## Skills
 
-Python, SQL, TypeScript, Java, Scala, R, Bash. Data engineering: Snowflake,
-Redshift, BigQuery, PostgreSQL, MongoDB, Apache Kafka, Apache Airflow, Dagster,
-dbt, Spark. Generative AI: LangChain, LangGraph, FastMCP, ChromaDB, RAGAS, RAG,
-LLM agents, fine-tuning. ML/DL: PyTorch, TensorFlow, scikit-learn, XGBoost,
-Hugging Face. Cloud & infra: AWS (S3, Redshift, IAM), Azure, GCP, Docker,
-Kubernetes, GitHub Actions CI/CD. Apps & backend: FastAPI, Flask, Streamlit,
-Next.js, React, Pydantic, pytest, SSE streaming. Analytics: Tableau, Power BI,
-statistical analysis, A/B testing, time-series, causal inference.
+Python, Java, C/C++, R, SQL, JavaScript, TypeScript, Bash. Data engineering:
+Snowflake, Redshift, BigQuery, PostgreSQL, MongoDB, Apache Kafka, Apache
+Airflow, Dagster, dbt, Spark. Generative AI: Claude API, Gemini API, LangChain,
+LangGraph, FastMCP, ChromaDB, RAGAS, RAG, LLM agents, MCP, fine-tuning. ML/DL:
+PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face. Cloud & infra: AWS
+(S3, Redshift, IAM), Azure, GCP, Docker, Kubernetes, GitHub Actions CI/CD. Apps
+& backend: FastAPI, Flask, Streamlit, Next.js, React, Pydantic, pytest, SSE
+streaming. Analytics: Tableau, Power BI, statistical analysis, A/B testing,
+time-series, causal inference.
 
 ## Beyond work
 
