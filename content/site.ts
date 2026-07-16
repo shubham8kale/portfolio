@@ -6,10 +6,8 @@
 export const site = {
   name: "Shubham Kale",
   role: "AI/Data Engineer",
-  // TODO(M0): one-line pitch needs Shubham's sign-off before launch.
   pitch:
     "I build AI and data systems — and publish the evaluations that prove they work.",
-  // TODO(M0): replace with the real Vercel deployment URL (or custom domain later).
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   email: "1842shubham@gmail.com",
   github: "https://github.com/shubham8kale",
@@ -28,7 +26,7 @@ export const beyondWork = {
   },
   curiosity: {
     heading: "Currently curious about",
-    body: "Broad tech enthusiast — genuinely into technology well beyond the data stack.",
+    body: "Broad tech enthusiast — genuinely into technology well beyond the stacks I work in.",
     // Rendered as chips; sourced from Shubham's curated bot knowledge.
     items: [
       "LLM observability & tracing",

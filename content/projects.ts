@@ -39,11 +39,11 @@ export const leadProjects: Project[] = [
   {
     slug: "financial-research-agent",
     title: "Financial Research Agent",
-    framing: "Portfolio project — agentic RAG with a live deployment",
+    framing: "Portfolio project — full-stack agentic RAG with a live deployment",
     problem:
       "Research questions over SEC 10-K filings need grounded retrieval, not just fluent generation — and evidence that the answers stay faithful to the source documents.",
     built: [
-      "LangGraph ReAct agent with tools exposed through an MCP server",
+      "LangGraph ReAct agent that discovers its tools at runtime from an MCP server",
       "ChromaDB retrieval over ~67K chunks from five companies' 10-K filings",
       "RAGAS evaluation harness measuring faithfulness and context recall",
       "FastAPI backend, Docker Compose deployment, GitHub Actions CI",
@@ -135,19 +135,20 @@ export type SecondaryProject = {
   href: string;
 };
 
-// Numbers here (like the 150K F1 records) trace to Shubham's own project
-// write-ups. The section renders only when this is non-empty.
+// One-liners trace to Shubham's own project write-ups; performance/scale
+// metrics live only on his approved list. The section renders only when this
+// is non-empty.
 export const secondaryProjects: SecondaryProject[] = [
   {
     title: "Football club analysis (2008–2016)",
     oneLiner:
-      "A Tableau story dissecting a European club's seasons — goal breakdowns and how tactics moved the numbers, across two dashboards.",
+      "A Tableau story dissecting a European club's seasons — goal breakdowns and how tactics moved the numbers.",
     href: "https://public.tableau.com/app/profile/shubham.kale4203/viz/cfg_final/Story1",
   },
   {
     title: "Formula 1 lap-time prediction",
     oneLiner:
-      "Lap-time models (Linear Regression, XGBoost) over 150K+ F1 lap records, plus K-means clustering of drivers into racing-style archetypes.",
+      "Lap-time models (Linear Regression, XGBoost) over Formula 1 lap records, plus K-means clustering of drivers into racing-style archetypes.",
     href: "https://github.com/shubham8kale/Formula-1-Project",
   },
   {

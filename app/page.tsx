@@ -1,5 +1,6 @@
 import { site } from "@/content/site";
 import { Hero } from "@/components/sections/Hero";
+import { Experience } from "@/components/sections/Experience";
 import { LeadProjects } from "@/components/sections/LeadProjects";
 import { SecondaryProjects } from "@/components/sections/SecondaryProjects";
 import { BeyondWork } from "@/components/sections/BeyondWork";
@@ -26,6 +27,12 @@ export default function Home() {
       <header className="flex items-baseline justify-between pt-8 font-mono text-sm">
         <span className="text-ink font-medium">{site.name}</span>
         <nav aria-label="Sections" className="flex gap-6">
+          <a
+            className="text-ink-muted hover:text-pitch transition-colors"
+            href="#experience"
+          >
+            Experience
+          </a>
           <a className="text-ink-muted hover:text-pitch transition-colors" href="#work">
             Work
           </a>
@@ -39,6 +46,7 @@ export default function Home() {
       </header>
       <main>
         <Hero />
+        <Experience />
         <LeadProjects />
         <SecondaryProjects />
         <BeyondWork />

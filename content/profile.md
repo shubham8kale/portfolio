@@ -21,9 +21,9 @@
 ## Who he is
 
 - AI/Data Engineer with roughly two years of experience, based in Pittsburgh, PA.
-- Builds production data platforms and agentic AI systems, with work spanning healthcare, insurance, and consumer-products domains.
-- Currently an Analytics Engineer building ELT pipelines, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
-- Open to Data Engineer, AI Engineer, Data Scientist, and Software Engineer roles.
+- Builds agentic AI systems and production data platforms, with work spanning healthcare, insurance, and consumer-products domains.
+- Currently an Analytics Engineer shipping production LLM features (Claude API) alongside ELT pipelines, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
+- Open to AI Engineer, Data Engineer, Data Scientist, and Software Engineer roles.
 - Contact: 1842shubham@gmail.com · github.com/shubham8kale · linkedin.com/in/shubham8kale
 - What sets his work apart: honest evaluation and real deployment. He measures his systems and publishes the numbers — an emphasis on honest evaluation over inflated claims.
 
@@ -75,15 +75,15 @@ confidential and never shared.
 
 ## Skills
 
-Python, Java, C/C++, R, SQL, JavaScript, TypeScript, Bash. Data engineering:
-Snowflake, Redshift, BigQuery, PostgreSQL, MongoDB, Apache Kafka, Apache
-Airflow, Dagster, dbt, Spark. Generative AI: Claude API, Gemini API, LangChain,
-LangGraph, FastMCP, ChromaDB, RAGAS, RAG, LLM agents, MCP, fine-tuning. ML/DL:
-PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face. Cloud & infra: AWS
-(S3, Redshift, IAM), Azure, GCP, Docker, Kubernetes, GitHub Actions CI/CD. Apps
-& backend: FastAPI, Flask, Streamlit, Next.js, React, Pydantic, pytest, SSE
-streaming. Analytics: Tableau, Power BI, statistical analysis, A/B testing,
-time-series, causal inference.
+Python, Java, C/C++, R, SQL, JavaScript, TypeScript, Bash. Generative AI:
+Claude API, Gemini API, LangChain, LangGraph, FastMCP, ChromaDB, RAGAS, RAG,
+LLM agents, MCP, fine-tuning. ML/DL: PyTorch, TensorFlow, scikit-learn,
+XGBoost, Hugging Face. Data engineering: Snowflake, Redshift, BigQuery,
+PostgreSQL, MongoDB, Apache Kafka, Apache Airflow, Dagster, dbt, Spark. Cloud &
+infra: AWS (S3, Redshift, IAM), Azure, GCP, Docker, Kubernetes, GitHub Actions
+CI/CD. Apps & backend: FastAPI, Flask, Streamlit, Next.js, React, Pydantic,
+pytest, SSE streaming. Analytics: Tableau, Power BI, statistical analysis, A/B
+testing, time-series, causal inference.
 
 ## Beyond work
 
