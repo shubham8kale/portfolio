@@ -6,17 +6,17 @@
 
   Editing rules (never break these):
   - EMPLOYER names may be named (Shubham's own jobs, public on his résumé).
-  - CLIENT names must NEVER appear — industry descriptors only ("a healthcare
+  - CLIENT names must NEVER appear - industry descriptors only ("a healthcare
     client"). Shubham works at a consulting firm; the clients it serves are
     confidential.
   - No phone number. No work-authorization / visa status.
   - No metrics that don't trace to Shubham's own material.
   - Football clubs may be named (Shubham authored them into his bot knowledge).
-  - Never name or hint at the specific Grid Resilience negative-result model —
+  - Never name or hint at the specific Grid Resilience negative-result model -
     the "honest about failures" trait is fine; the failed model itself is not.
 -->
 
-# Shubham Kale — public profile
+# Shubham Kale - public profile
 
 ## Who he is
 
@@ -25,16 +25,16 @@
 - Currently an Analytics Engineer shipping production LLM features (Claude API) alongside ELT pipelines, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
 - Open to AI Engineer, Data Engineer, Data Scientist, and Software Engineer roles.
 - Contact: 1842shubham@gmail.com · github.com/shubham8kale · linkedin.com/in/shubham8kale
-- What sets his work apart: honest evaluation and real deployment. He measures his systems and publishes the numbers — an emphasis on honest evaluation over inflated claims.
+- What sets his work apart: honest evaluation and real deployment. He measures his systems and publishes the numbers - an emphasis on honest evaluation over inflated claims.
 
 ## Education
 
-- Stony Brook University, New York — M.S. in Data Science (GPA 3.78/4).
-- NMIMS University, Mumbai — B.Tech in Data Science (CGPA 3.56/4).
+- Stony Brook University, New York - M.S. in Data Science (GPA 3.78/4).
+- NMIMS University, Mumbai - B.Tech in Data Science (CGPA 3.56/4).
 
 ## Experience
 
-Client engagements are described by industry only — client names are
+Client engagements are described by industry only - client names are
 confidential and never shared.
 
 - **Analytics Engineer, Quantegy Analytics (current role, remote).** Builds production data platforms, LLM features, and BI for healthcare, insurance, and consumer-products clients.
@@ -57,19 +57,19 @@ confidential and never shared.
 - Evaluated with a RAGAS harness using a separate judge model (to avoid quota contention): 0.80 faithfulness and 0.80 context recall.
 - Deployed as a two-service FastAPI + MCP microservice on Docker Compose, with CI via GitHub Actions.
 - Full-stack Next.js/TypeScript chat UI streaming answers live over Server-Sent Events.
-- Framed as a portfolio project with a live demo — a demonstration of engineering judgment, not a production system.
+- Framed as a portfolio project with a live demo - a demonstration of engineering judgment, not a production system.
 
 ## Project: Grid Resilience (portfolio project)
 
 - Real-time anomaly-detection system for the New York power grid.
-- Streams NYISO forecast-vs-actual load data — roughly 89,000 hourly records across all 11 NYISO zones — through Apache Kafka (Docker, KRaft mode).
+- Streams NYISO forecast-vs-actual load data - roughly 89,000 hourly records across all 11 NYISO zones - through Apache Kafka (Docker, KRaft mode).
 - Uses a causal rolling z-score detector with adaptive per-zone, per-hour-of-day thresholds.
-- Evaluated honestly against an offline statistical method: Cohen's kappa 0.52, recall 0.61 — explicitly avoiding the inflated-accuracy trap of rare-event detection.
+- Evaluated honestly against an offline statistical method: Cohen's kappa 0.52, recall 0.61 - explicitly avoiding the inflated-accuracy trap of rare-event detection.
 - Includes a Streamlit live dashboard, unit tests, and CI.
 
 ## Smaller projects
 
-- **Football club analysis (2008–2016):** a Tableau story analyzing a European club's seasons — goal breakdowns and tactical impact across two dashboards.
+- **Football club analysis (2008-2016):** a Tableau story analyzing a European club's seasons - goal breakdowns and tactical impact across two dashboards.
 - **Formula 1 lap-time prediction:** Linear Regression and XGBoost over 150K+ lap records, plus K-means clustering of drivers into racing-style archetypes.
 - **Product photography AI:** background removal with rembg and Stable Diffusion inpainting to regenerate product-shot backgrounds from a prompt.
 
@@ -87,14 +87,14 @@ testing, time-series, causal inference.
 
 ## Beyond work
 
-- **Football.** Follows the game closely as both a fan and a student of it. He supports Real Madrid, his local Pittsburgh Riverhound SC, and the India and Spain national teams — drawn to Spain for their possession-based style. A self-described tactics nerd who has played FIFA for years and competed in an amateur district-level league in India, he watches as much for shape and pressing structure as for the result.
+- **Football.** Follows the game closely as both a fan and a student of it. He supports Real Madrid, his local Pittsburgh Riverhound SC, and the India and Spain national teams - drawn to Spain for their possession-based style. A self-described tactics nerd who has played FIFA for years and competed in an amateur district-level league in India, he watches as much for shape and pressing structure as for the result.
 - **Broad tech curiosity.** Genuinely into technology well beyond the data stack. Current interests: LLM observability and tracing for agentic systems; multi-agent orchestration patterns and their failure modes; causal inference and A/B testing for real-world decision systems; layout-aware parsing of messy documents (tables, PDFs); running ML/agentic systems on Kubernetes at production depth; and the Model Context Protocol (MCP) ecosystem.
-- Outside of tech he's up for most things — hiking, dancing, trying new food — and brings that same hands-on curiosity to picking up new tools.
+- Outside of tech he's up for most things - hiking, dancing, trying new food - and brings that same hands-on curiosity to picking up new tools.
 - He's candid about what does and doesn't work, publishing honest metrics rather than inflated ones.
 
 ## About this assistant
 
-- This chat is grounded in this one profile document — there is no vector
+- This chat is grounded in this one profile document - there is no vector
   database, because the whole profile fits in the model's context (a deliberate
   right-sizing decision).
 - For anything not covered here, the right move is to email Shubham directly at

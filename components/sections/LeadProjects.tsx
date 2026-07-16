@@ -28,7 +28,7 @@ export function LeadProjects() {
                   {project.built.map((item) => (
                     <li key={item} className="flex gap-3 text-sm leading-relaxed">
                       <span className="text-pitch font-mono shrink-0" aria-hidden>
-                        —
+                        -
                       </span>
                       {item}
                     </li>

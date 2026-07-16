@@ -6,7 +6,7 @@ export function Footer() {
       <div className="flex flex-wrap items-baseline justify-between gap-6">
         <div>
           <p className="font-display text-2xl text-ink">
-            Say hello — I answer email fast.
+            Say hello - I answer email fast.
           </p>
           <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
             <a

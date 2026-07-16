@@ -5,10 +5,10 @@ export function Hero() {
   return (
     <section className="pt-20 pb-24 sm:pt-28 sm:pb-32">
       <p className="font-mono text-xs uppercase tracking-[0.25em] text-pitch mb-6">
-        {site.name} — {site.role}
+        {site.name} - {site.role}
       </p>
       <h1 className="font-display text-5xl sm:text-7xl leading-[1.05] tracking-tight text-ink max-w-4xl">
-        I build AI and data systems — and{" "}
+        I build AI and data systems - and{" "}
         <em className="text-pitch">publish the evaluations</em> that prove they
         work.
       </h1>

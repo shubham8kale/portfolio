@@ -5,7 +5,7 @@
  *
  * Standing guardrails:
  * - Framing is always "portfolio project", never "production system".
- * - No client names anywhere — domain descriptors only.
+ * - No client names anywhere - domain descriptors only.
  * - The Grid Resilience next-hour RandomForest negative result is deliberately
  *   absent from this file and must never appear on the site.
  */
@@ -14,7 +14,7 @@ export type Metric = {
   /** The number itself, rendered large in mono. */
   value: string;
   label: string;
-  /** Where the number comes from — honesty is the point. */
+  /** Where the number comes from - honesty is the point. */
   context: string;
 };
 
@@ -39,9 +39,9 @@ export const leadProjects: Project[] = [
   {
     slug: "financial-research-agent",
     title: "Financial Research Agent",
-    framing: "Portfolio project — full-stack agentic RAG with a live deployment",
+    framing: "Portfolio project - full-stack agentic RAG with a live deployment",
     problem:
-      "Research questions over SEC 10-K filings need grounded retrieval, not just fluent generation — and evidence that the answers stay faithful to the source documents.",
+      "Research questions over SEC 10-K filings need grounded retrieval, not just fluent generation - and evidence that the answers stay faithful to the source documents.",
     built: [
       "LangGraph ReAct agent that discovers its tools at runtime from an MCP server",
       "ChromaDB retrieval over ~67K chunks from five companies' 10-K filings",
@@ -93,9 +93,9 @@ export const leadProjects: Project[] = [
   {
     slug: "grid-resilience",
     title: "Grid Resilience",
-    framing: "Portfolio project — real-time anomaly detection on streaming grid data",
+    framing: "Portfolio project - real-time anomaly detection on streaming grid data",
     problem:
-      "Catching anomalies in electric-load data as it streams — and reporting honestly how real-time detection compares to an offline pass over the same data.",
+      "Catching anomalies in electric-load data as it streams - and reporting honestly how real-time detection compares to an offline pass over the same data.",
     built: [
       "Apache Kafka streaming pipeline (Docker, KRaft mode)",
       "~89K NYISO forecast-vs-actual load records across 11 zones",
@@ -105,7 +105,7 @@ export const leadProjects: Project[] = [
       {
         value: "0.52",
         label: "Cohen's kappa",
-        context: "streaming vs. offline detection agreement — reported as measured",
+        context: "streaming vs. offline detection agreement - reported as measured",
       },
       {
         value: "~89K",
@@ -140,9 +140,9 @@ export type SecondaryProject = {
 // is non-empty.
 export const secondaryProjects: SecondaryProject[] = [
   {
-    title: "Football club analysis (2008–2016)",
+    title: "Football club analysis (2008-2016)",
     oneLiner:
-      "A Tableau story dissecting a European club's seasons — goal breakdowns and how tactics moved the numbers.",
+      "A Tableau story dissecting a European club's seasons - goal breakdowns and how tactics moved the numbers.",
     href: "https://public.tableau.com/app/profile/shubham.kale4203/viz/cfg_final/Story1",
   },
   {

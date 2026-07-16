@@ -62,7 +62,7 @@ export function ChatWidget() {
           const data = (await res.json().catch(() => null)) as
             | { error?: string }
             | null;
-          setNotice(data?.error ?? "Something went wrong — try again.");
+          setNotice(data?.error ?? "Something went wrong - try again.");
           return;
         }
 
@@ -103,7 +103,7 @@ export function ChatWidget() {
           }
         }
       } catch {
-        setNotice("Network hiccup — try again.");
+        setNotice("Network hiccup - try again.");
       } finally {
         setBusy(false);
         inputRef.current?.focus();
@@ -161,7 +161,7 @@ export function ChatWidget() {
               {messages.length === 0 && (
                 <div className="space-y-2">
                   <p className="text-sm text-ink-muted leading-relaxed">
-                    Ask about Shubham&apos;s projects, skills, experience — or
+                    Ask about Shubham&apos;s projects, skills, experience - or
                     football.
                   </p>
                   {SUGGESTED.map((prompt) => (
@@ -222,7 +222,7 @@ export function ChatWidget() {
                 </button>
               </div>
               <p className="mt-2.5 text-[0.65rem] leading-relaxed text-ink-muted">
-                AI assistant answering from Shubham&apos;s published profile — it
+                AI assistant answering from Shubham&apos;s published profile - it
                 may be imperfect. Verify anything important with him directly:{" "}
                 <a className="underline" href={`mailto:${site.email}`}>
                   {site.email}

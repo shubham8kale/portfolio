@@ -40,7 +40,7 @@ export async function POST(request: Request) {
   if (!process.env.GROQ_API_KEY) {
     return json(
       503,
-      "The chat isn't configured yet — email Shubham instead: 1842shubham@gmail.com",
+      "The chat isn't configured yet - email Shubham instead: 1842shubham@gmail.com",
     );
   }
 
@@ -55,8 +55,8 @@ export async function POST(request: Request) {
     return json(
       429,
       limit.reason === "global"
-        ? "The bot has hit its daily message budget — it resets tomorrow. The links above go straight to the human."
-        : "That's a lot of questions at once — give it a few minutes and try again.",
+        ? "The bot has hit its daily message budget - it resets tomorrow. The links above go straight to the human."
+        : "That's a lot of questions at once - give it a few minutes and try again.",
     );
   }
 
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     });
   } catch (err) {
     console.error("[chat] upstream error", err);
-    return json(502, "The model is unavailable right now — try again shortly.");
+    return json(502, "The model is unavailable right now - try again shortly.");
   }
 
   // If the visitor closes the panel/tab mid-answer, stop consuming the
@@ -88,7 +88,8 @@ export async function POST(request: Request) {
     async start(controller) {
       try {
         for await (const chunk of stream) {
-          const delta = chunk.choices[0]?.delta?.content;
+          // Rule 8 asks the model to avoid em/en dashes; this makes it certain.
+          const delta = chunk.choices[0]?.delta?.content?.replace(/[—–]/g, "-");
           if (delta) {
             controller.enqueue(
               encoder.encode(`data: ${JSON.stringify({ text: delta })}\n\n`),
@@ -97,12 +98,12 @@ export async function POST(request: Request) {
         }
         controller.enqueue(encoder.encode("data: [DONE]\n\n"));
       } catch (err) {
-        // A client disconnect surfaces here as an abort — that's not an error.
+        // A client disconnect surfaces here as an abort - that's not an error.
         if (!request.signal.aborted) {
           console.error("[chat] stream error", err);
           controller.enqueue(
             encoder.encode(
-              `data: ${JSON.stringify({ error: "The stream dropped — try again." })}\n\n`,
+              `data: ${JSON.stringify({ error: "The stream dropped - try again." })}\n\n`,
             ),
           );
         }

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
 
-export const alt = `${site.name} — ${site.role}`;
+export const alt = `${site.name} - ${site.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,7 +30,7 @@ export default function OpengraphImage() {
             color: "#1f6b3b",
           }}
         >
-          {`${site.name} — ${site.role}`}
+          {`${site.name} - ${site.role}`}
         </div>
         <div
           style={{
@@ -41,7 +41,7 @@ export default function OpengraphImage() {
             maxWidth: 1000,
           }}
         >
-          I build AI and data systems — and publish the evaluations that prove
+          I build AI and data systems - and publish the evaluations that prove
           they work.
         </div>
         <div
