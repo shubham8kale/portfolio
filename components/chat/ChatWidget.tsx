@@ -7,7 +7,7 @@ import { site } from "@/content/site";
 type Message = { role: "user" | "assistant"; content: string };
 
 const SUGGESTED = [
-  "What's the strongest evidence he can do data engineering?",
+  "What has he shipped with LLMs in production?",
   "How were the RAG evals run?",
   "Is he actually into football?",
 ];
