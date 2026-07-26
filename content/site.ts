@@ -5,7 +5,7 @@
  */
 export const site = {
   name: "Shubham Kale",
-  role: "AI/Data Engineer",
+  role: "AI Engineer & Data Scientist",
   pitch:
     "I build AI and data systems - and publish the evaluations that prove they work.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
@@ -31,7 +31,7 @@ export const beyondWork = {
     items: [
       "LLM observability & tracing",
       "Multi-agent orchestration",
-      "Causal inference & A/B testing",
+      "Formal A/B testing at scale",
       "Layout-aware document parsing",
       "ML on Kubernetes",
       "The MCP ecosystem",

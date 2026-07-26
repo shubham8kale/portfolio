@@ -20,10 +20,10 @@
 
 ## Who he is
 
-- AI/Data Engineer with roughly two years of experience, based in Pittsburgh, PA.
-- Builds agentic AI systems and production data platforms, with work spanning healthcare, insurance, and consumer-products domains.
-- Currently an Analytics Engineer shipping production LLM features (Claude API) alongside ELT pipelines, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
-- Open to AI Engineer, Data Engineer, Data Scientist, and Software Engineer roles.
+- AI Engineer and Data Scientist with roughly two years of experience, based in Pittsburgh, PA.
+- Builds agentic AI systems, applied ML models with measured business impact, and production data platforms, with work spanning healthcare, insurance, finance, and consumer-products domains.
+- Currently an Analytics Engineer shipping production LLM features (Claude API) and client-facing predictive models, alongside ELT pipelines, dimensional models, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
+- Open to AI Engineer, Data Scientist, Data Engineer, and Software Engineer roles.
 - Contact: 1842shubham@gmail.com · github.com/shubham8kale · linkedin.com/in/shubham8kale
 - What sets his work apart: honest evaluation and real deployment. He measures his systems and publishes the numbers - an emphasis on honest evaluation over inflated claims.
 
@@ -40,6 +40,9 @@ confidential and never shared.
 - **Analytics Engineer, Quantegy Analytics (current role, remote).** Builds production data platforms, LLM features, and BI for healthcare, insurance, and consumer-products clients.
   - Shipped an LLM-powered navigation assistant (Claude API) into a production analytics platform serving 50+ daily users across 5 markets, routing natural-language queries to the right dashboard via a structured page-catalog context.
   - Delivered production Streamlit platforms for two clients: a healthcare platform that cut a 3-day Excel reporting cycle to same-day, and separately a correctional-healthcare app with per-county, group-based access control for county and sheriff's-office users.
+  - Ranked retail endcap placement across a 420 store chain for a consumer-products client, using a stacked decision-tree and linear-regression ensemble over demographic features engineered from open-source population data at store-area level. The client installed the top 3 predicted stores per region, and those stores posted a 12% first-week sales lift against 0.2% in a matched control group of ranked but uninstalled stores. He also tracked predicted-versus-realized calibration at 61% rather than reporting the forecast as the result, and is candid that parallel trends is not yet tested and no significance testing was run.
+  - Designed the target Snowflake schemas and dimensional models behind 3 client data platforms: fact and dimension tables with conformed dimensions, declared grain, and Type 2 history tracking over raw vendor EHR, API, and CSV feeds.
+  - Built the dbt transformation layer for an insurance client, modeling raw Snowflake ingests into analytics-ready tables.
   - Engineered Dagster-orchestrated ELT pipelines ingesting 4M+ patient and financial records from 15+ Redshift tables into Snowflake, powering analytics across 3 healthcare markets.
   - Owned end-to-end data engineering for a correctional-healthcare client: Dagster pipelines ingesting 120+ tables of vendor EHR and CSV data into structured Snowflake schemas across 15 counties.
   - Resolved an extraction bottleneck via parallel multi-table ingestion (~5x throughput) with REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework adopted by 4+ teams.
@@ -88,7 +91,7 @@ testing, time-series, causal inference.
 ## Beyond work
 
 - **Football.** Follows the game closely as both a fan and a student of it. He supports Real Madrid, his local Pittsburgh Riverhound SC, and the India and Spain national teams - drawn to Spain for their possession-based style. A self-described tactics nerd who has played FIFA for years and competed in an amateur district-level league in India, he watches as much for shape and pressing structure as for the result.
-- **Broad tech curiosity.** Genuinely into technology well beyond the data stack. Current interests: LLM observability and tracing for agentic systems; multi-agent orchestration patterns and their failure modes; causal inference and A/B testing for real-world decision systems; layout-aware parsing of messy documents (tables, PDFs); running ML/agentic systems on Kubernetes at production depth; and the Model Context Protocol (MCP) ecosystem.
+- **Broad tech curiosity.** Genuinely into technology well beyond the data stack. Current interests: LLM observability and tracing for agentic systems; multi-agent orchestration patterns and their failure modes; formal A/B testing at scale (randomized assignment, power analysis, sequential testing) as a complement to the quasi-experimental evaluation he has done on real client work; layout-aware parsing of messy documents (tables, PDFs); running ML/agentic systems on Kubernetes at production depth; and the Model Context Protocol (MCP) ecosystem.
 - Outside of tech he's up for most things - hiking, dancing, trying new food - and brings that same hands-on curiosity to picking up new tools.
 - He's candid about what does and doesn't work, publishing honest metrics rather than inflated ones.
 
