@@ -24,6 +24,7 @@ export const experience: Experience = {
   highlights: [
     "Shipped an LLM-powered navigation assistant (Claude API) into a client's production analytics platform - natural-language questions routed to the right dashboard through a structured page catalog.",
     "Ranked retail endcap placement across a 420 store chain for a consumer-products client using a stacked decision-tree and linear-regression ensemble over engineered demographic features, then measured the rollout against a control group of ranked but uninstalled stores.",
+    "Works agent-first day to day, using Claude Code on client-shipping deliverables: migrated 5 executive dashboards to the .pbip text format so agent-authored changes ship as reviewable diffs under Git.",
     "Engineered Dagster-orchestrated ELT ingesting patient and financial records from 15+ Redshift tables into Snowflake.",
     "Productionized Airflow scheduling with pytest/httpx coverage validating 10M+ records.",
     "Delivered client Streamlit platforms that compressed a 3-day Excel reporting cycle to same-day.",
