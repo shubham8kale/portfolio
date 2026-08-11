@@ -5,7 +5,11 @@
  */
 export const site = {
   name: "Shubham Kale",
-  role: "AI Engineer & Data Scientist",
+  // Lead identity is a single track. This string feeds the page title, OG and
+  // Twitter cards, the JSON-LD jobTitle, and the hero kicker, so it is the
+  // highest-leverage line on the site. Other role families he is open to live
+  // in the hero's "Looking at" line and in content/profile.md, not here.
+  role: "AI Engineer",
   pitch:
     "I build AI and data systems - and publish the evaluations that prove they work.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",

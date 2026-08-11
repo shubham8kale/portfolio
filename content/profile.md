@@ -20,10 +20,10 @@
 
 ## Who he is
 
-- AI Engineer and Data Scientist with roughly two years of experience, based in Pittsburgh, PA.
+- AI Engineer with roughly two years of experience, based in Pittsburgh, PA.
 - Builds agentic AI systems, applied ML models with measured business impact, and production data platforms, with work spanning healthcare, insurance, finance, and consumer-products domains.
 - Currently an Analytics Engineer shipping production LLM features (Claude API) and client-facing predictive models, alongside ELT pipelines, dimensional models, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
-- Open to AI Engineer, Data Scientist, Data Engineer, and Software Engineer roles.
+- Open to AI Engineer, Data Engineer, Software Engineer, and Data Scientist roles.
 - Contact: 1842shubham@gmail.com · github.com/shubham8kale · linkedin.com/in/shubham8kale
 - What sets his work apart: honest evaluation and real deployment. He measures his systems and publishes the numbers - an emphasis on honest evaluation over inflated claims.
 
