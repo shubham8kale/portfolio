@@ -41,8 +41,7 @@ export default function OpengraphImage() {
             maxWidth: 1000,
           }}
         >
-          I build AI and data systems - and publish the evaluations that prove
-          they work.
+          {site.pitch}
         </div>
         <div
           style={{
