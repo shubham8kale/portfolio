@@ -1,7 +1,14 @@
 /**
  * Single source of truth for identity and the public contact surface.
- * Guardrail: email + GitHub + LinkedIn only - no phone number, no work
- * authorization, anywhere on the site.
+ *
+ * Guardrail, scoped precisely: the site's own copy carries email + GitHub +
+ * LinkedIn only, and no phone number or work-authorization status appears in
+ * any page, component, metadata field, or in the profile bot's knowledge file.
+ *
+ * The one deliberate exception is the hosted resume PDF, which carries a phone
+ * number in its header because it is the same file sent to employers. Anyone
+ * downloading it has already chosen to. Do not restate the number anywhere in
+ * this repo, and do not read the guardrail as covering that PDF.
  */
 export const site = {
   name: "Shubham Kale",
