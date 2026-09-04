@@ -7,7 +7,10 @@ export const runtime = "nodejs";
 
 // Groq is OpenAI-compatible; swapping provider later is a config change.
 const GROQ_BASE_URL = "https://api.groq.com/openai/v1";
-const MODEL = process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile";
+// llama-3.3-70b-versatile was decommissioned for free/dev tiers on 2026-08-16;
+// requests to it return 404 and surface as the 502 below. Keep this pinned to a
+// model listed at console.groq.com/docs/models.
+const MODEL = process.env.GROQ_MODEL ?? "openai/gpt-oss-120b";
 
 function json(status: number, error: string) {
   return Response.json({ error }, { status });
@@ -72,10 +75,16 @@ export async function POST(request: Request) {
       stream: true,
       temperature: 0.3,
       max_tokens: 600,
+      // gpt-oss models reason by default and return it in a separate
+      // `reasoning` field, so delta.content stays clean; keep it cheap.
+      reasoning_effort: "low",
       messages: [{ role: "system", content: getSystemPrompt() }, ...messages],
     });
   } catch (err) {
-    console.error("[chat] upstream error", err);
+    // Log the status and code: a decommissioned model is a 404 here and is
+    // otherwise indistinguishable from a transient outage in the logs.
+    const e = err as { status?: number; code?: string; message?: string };
+    console.error("[chat] upstream error", MODEL, e?.status, e?.code, e?.message);
     return json(502, "The model is unavailable right now - try again shortly.");
   }
 
