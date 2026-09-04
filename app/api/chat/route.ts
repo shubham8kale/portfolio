@@ -17,6 +17,18 @@ function json(status: number, error: string) {
 }
 
 export async function POST(request: Request) {
+  // Never let an unhandled throw become a bodiless 500. The widget can only
+  // render "Something went wrong" for those, which hides the real cause and
+  // is exactly how a broken rate limiter looked like a broken bot.
+  try {
+    return await handleChat(request);
+  } catch (err) {
+    console.error("[chat] unhandled route error", err);
+    return json(500, "Something broke on my end - try again shortly.");
+  }
+}
+
+async function handleChat(request: Request) {
   // Cheap abuse friction, not a security boundary: browsers always send
   // Origin on POST; reject mismatches, allow curl/no-origin.
   const origin = request.headers.get("origin");

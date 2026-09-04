@@ -41,14 +41,24 @@ function getLimiters() {
 }
 
 export async function checkRateLimit(ip: string): Promise<LimitResult> {
-  const limiters = getLimiters();
-  if (!limiters) return { ok: true };
+  // Fail OPEN on any Upstash problem. This layer is abuse friction, not a
+  // security boundary, and an unreachable Redis (deleted free-tier database,
+  // rotated token, malformed URL) used to throw straight through the route
+  // and return an empty 500 to every visitor. A degraded limiter is worth
+  // far less than a working bot; the Groq account quota is the hard bound.
+  try {
+    const limiters = getLimiters();
+    if (!limiters) return { ok: true };
 
-  const perIp = await limiters.perIp.limit(ip);
-  if (!perIp.success) return { ok: false, reason: "ip" };
+    const perIp = await limiters.perIp.limit(ip);
+    if (!perIp.success) return { ok: false, reason: "ip" };
 
-  const global = await limiters.global.limit("all");
-  if (!global.success) return { ok: false, reason: "global" };
+    const global = await limiters.global.limit("all");
+    if (!global.success) return { ok: false, reason: "global" };
 
-  return { ok: true };
+    return { ok: true };
+  } catch (err) {
+    console.error("[chat] rate limiter unavailable, allowing request", err);
+    return { ok: true };
+  }
 }
