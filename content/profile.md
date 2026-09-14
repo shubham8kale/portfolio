@@ -60,7 +60,7 @@ confidential and never shared.
 - 16 deterministic evidence checks, each carrying its policy source, run on every extracted fact before it can reach a workpaper. Even a fully passing test is recorded as "proposed clean", because sign-off is a human act.
 - Controls live in code: row-level security on all 7 database tables, versioned approvals under row locks, a staleness cascade that marks downstream work stale with a reason whenever something upstream is corrected, and a chat assistant that can propose typed edits with a reason but has no approval operation.
 - Stack: FastAPI and Python, React/TypeScript/Vite, Supabase (PostgreSQL, named authentication, private file storage), a Groq-hosted vision model, one Docker service on Render. 53 tests with GitHub Actions CI.
-- Built as a case study for an accounting firm. It is not RAG and not an agent: the assistant is handed a bounded context that Python assembled for one engagement. The repository and live demo are currently access-restricted; a public read-only demo is planned.
+- A personal portfolio project. It is not RAG and not an agent: the assistant is handed a bounded context that Python assembled for one engagement. The repository and live demo are currently access-restricted; a public read-only demo is planned.
 - Honest limitations: policy thresholds are encoded as one firm's methodology rather than a configurable table; three industries are covered; sampling is judgmental, not statistically projectable; the model is paced to a free API quota.
 
 ## Project: Financial Research Agent (portfolio project, live demo available)
