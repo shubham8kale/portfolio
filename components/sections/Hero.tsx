@@ -61,8 +61,8 @@ export function Hero() {
       </div>
 
       <p className="mt-10 font-mono text-xs text-ink-muted tracking-wide">
-        Looking at: AI Engineering · Data Engineering · Data Science · Software
-        Engineering
+        Looking at: AI Engineering · Software Engineering · Data Engineering ·
+        Data Science
       </p>
     </section>
   );

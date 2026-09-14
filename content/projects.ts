@@ -37,28 +37,83 @@ export type Project = {
 
 export const leadProjects: Project[] = [
   {
+    slug: "ai-auditor",
+    title: "AI Auditor",
+    framing: "Portfolio project - an audit preparation and review workspace",
+    problem:
+      "Audit evidence has to be read, checked and signed off - and a model that can read an invoice must never be the thing that approves it. The design question is where the line sits.",
+    built: [
+      "Five gated stages: onboarding, account mapping, materiality and scope, expense sampling, invoice testing",
+      "Vision LLM extracts document facts through a strict JSON-schema contract; deterministic Python owns money, thresholds, sample selection and approval",
+      "16 policy-cited evidence checks run on every extracted fact before it can reach a workpaper",
+      "Row-level security on every table, versioned approvals under row locks, and a staleness cascade that invalidates downstream work on any correction",
+      "A chat assistant that can propose typed edits with a reason, and cannot approve",
+    ],
+    metrics: [
+      {
+        value: "5",
+        label: "gated stages",
+        context: "each approved by a human before the next can run",
+      },
+      {
+        value: "16",
+        label: "evidence checks",
+        context: "deterministic, each carrying its policy source",
+      },
+      {
+        value: "53",
+        label: "tests",
+        context: "pytest, plus GitHub Actions CI",
+      },
+    ],
+    stack: [
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "Vite",
+      "Supabase",
+      "PostgreSQL",
+      "Groq",
+      "Structured outputs",
+      "Docker",
+      "Render",
+    ],
+    links: [
+      {
+        label: "Repository",
+        href: "https://github.com/shubham8kale/ai-auditor",
+        kind: "repo",
+      },
+      {
+        label: "Live demo",
+        href: "https://ai-auditor-o2ym.onrender.com/",
+        kind: "demo",
+      },
+    ],
+  },
+  {
     slug: "financial-research-agent",
     title: "Financial Research Agent",
-    framing: "Portfolio project - full-stack agentic RAG with a live deployment",
+    framing: "Portfolio project - full-stack agentic RAG with a published evaluation",
     problem:
       "Research questions over SEC 10-K filings need grounded retrieval, not just fluent generation - and evidence that the answers stay faithful to the source documents.",
     built: [
       "LangGraph ReAct agent that discovers its tools at runtime from an MCP server",
       "ChromaDB retrieval over ~67K chunks from five companies' 10-K filings",
-      "RAGAS evaluation harness measuring faithfulness and context recall",
+      "71-item labelled RAGAS benchmark with per-item results committed, a cross-family judge check, and terminal failures counted as zero",
       "FastAPI backend, Docker Compose deployment, GitHub Actions CI",
       "Next.js/TypeScript UI with SSE token streaming",
     ],
     metrics: [
       {
-        value: "0.80",
+        value: "0.71 → 0.88",
         label: "faithfulness",
-        context: "RAGAS, 5-company SEC 10-K corpus",
+        context: "RAGAS, 66 items, agent model the only variable, failures counted as zero",
       },
       {
-        value: "0.80",
-        label: "context recall",
-        context: "RAGAS, same evaluation run",
+        value: "12 → 6",
+        label: "terminal failures",
+        context: "empty or recursion-limit answers, out of 66, after the model swap",
       },
       {
         value: "~67K",

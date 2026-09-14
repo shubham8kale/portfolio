@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export function LeadProjects() {
   return (
     <section id="work" className="py-20 scroll-mt-16">
-      <SectionHeading kicker="Selected work" title="Two projects, honestly measured." />
+      <SectionHeading kicker="Selected work" title="Three projects, honestly measured." />
 
       <div>
         {leadProjects.map((project) => (
