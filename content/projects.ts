@@ -61,7 +61,7 @@ export const leadProjects: Project[] = [
         context: "deterministic, each carrying its policy source",
       },
       {
-        value: "53",
+        value: "62",
         label: "tests",
         context: "pytest, plus GitHub Actions CI",
       },
