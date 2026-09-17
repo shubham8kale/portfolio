@@ -46,8 +46,8 @@ confidential and never shared.
   - Built the dbt transformation layer for an insurance client, modeling raw Snowflake ingests into analytics-ready tables.
   - Engineered Dagster-orchestrated ELT pipelines ingesting 4M+ patient and financial records from 15+ Redshift tables into Snowflake, powering analytics across 3 healthcare markets.
   - Owned end-to-end data engineering for a correctional-healthcare client: Dagster pipelines ingesting 120+ tables of vendor EHR and CSV data into structured Snowflake schemas across 15 counties.
-  - Resolved an extraction bottleneck via parallel multi-table ingestion (~5x throughput) with REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework adopted by 4+ teams.
-  - Productionized scheduling on Airflow with full pytest/httpx coverage validating 10M+ records across 10+ tables.
+  - Resolved an extraction bottleneck via parallel multi-table ingestion (~5x throughput) with REST API integration, S3 archival, and Pydantic schema validation in a Dockerized CLI framework adopted by 4 client teams.
+  - Scheduled 10+ table ingestion on Airflow (largest table 10M+ records) with pytest/httpx tests on mocked APIs.
   - Secured 2 client environments end to end: AWS IAM/VPN access policies, Secrets Manager credentials, role-based Snowflake access, and PII redaction of credit-card data.
   - He joined here as an intern and carried through part-time to full-time without a break, working across three client verticals at once.
 - **Data Analyst Intern, Mettler-Toledo (Mumbai).** Built an end-to-end RAG system with fine-tuned language models for automated KPI/report commentary, and a rule-based assignment engine that significantly cut manual allocation work.

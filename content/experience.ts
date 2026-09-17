@@ -26,7 +26,7 @@ export const experience: Experience = {
     "Ranked retail endcap placement across a 420 store chain for a consumer-products client using a stacked decision-tree and linear-regression ensemble over engineered demographic features, then measured the rollout against a control group of ranked but uninstalled stores.",
     "Works agent-first day to day, using Claude Code on client-shipping deliverables: migrated 5 executive dashboards to the .pbip text format so agent-authored changes ship as reviewable diffs under Git.",
     "Engineered Dagster-orchestrated ELT ingesting patient and financial records from 15+ Redshift tables into Snowflake.",
-    "Productionized Airflow scheduling with pytest/httpx coverage validating 10M+ records.",
+    "Scheduled 10+ table ingestion on Airflow (largest table 10M+ records) with pytest/httpx tests on mocked APIs.",
     "Delivered client Streamlit platforms that compressed a 3-day Excel reporting cycle to same-day.",
   ],
   metrics: [
@@ -48,7 +48,7 @@ export const experience: Experience = {
     {
       value: "~5x",
       label: "extraction throughput",
-      context: "parallel ingestion framework, adopted by 4+ teams",
+      context: "parallel ingestion framework, adopted by 4 client teams",
     },
   ],
 };
