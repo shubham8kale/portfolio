@@ -18,6 +18,9 @@
   /* The tactical board keeps its grass-and-chalk look in both themes. */
   --board: #1f6b3b;
   --chalk: #faf7f2;
+  /* Warning state (admin keep-alive status). */
+  --warn: #8a4b00;
+  --warn-soft: #fbeedb;
   --scrim: rgb(26 24 21 / 0.3);
 }
 
@@ -35,6 +38,8 @@
     --muted-mark: #5e584e;
     --board: #1a5a32;
     --chalk: #ede8df;
+    --warn: #e8a54b;
+    --warn-soft: #2e2213;
     --scrim: rgb(0 0 0 / 0.5);
   }
 }
@@ -52,6 +57,8 @@
   --muted-mark: #5e584e;
   --board: #1a5a32;
   --chalk: #ede8df;
+  --warn: #e8a54b;
+  --warn-soft: #2e2213;
   --scrim: rgb(0 0 0 / 0.5);
 }
 
@@ -66,6 +73,8 @@
   --color-pitch-soft: var(--pitch-soft);
   --color-muted-mark: var(--muted-mark);
   --color-scrim: var(--scrim);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);

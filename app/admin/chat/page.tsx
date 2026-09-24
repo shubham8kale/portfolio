@@ -49,6 +49,60 @@ function lastDays(n: number, perDay: Map<string, number>) {
   });
 }
 
+const DAY_MS = 86_400_000;
+
+/** The daily job counts as healthy if it ran within the last two days. */
+function keepaliveAge(last: string | null | undefined) {
+  if (!last) return null;
+  return Math.max(0, Date.now() - new Date(last).getTime());
+}
+
+function KeepaliveStatus({ last }: { last: string | null | undefined }) {
+  const age = keepaliveAge(last);
+  const healthy = age !== null && age < 2 * DAY_MS;
+  const why =
+    "It runs once a day so Upstash doesn't delete the free database after 14 idle days.";
+
+  if (healthy) {
+    return (
+      <div className="mt-5 flex gap-3 rounded-xl border border-pitch/40 bg-pitch-soft px-4 py-3 text-sm">
+        <span aria-hidden className="font-semibold text-pitch">
+          ✓
+        </span>
+        <p>
+          <span className="font-medium text-ink">Database keep-alive is running.</span>{" "}
+          <span className="text-ink-muted">
+            Last ran {dateTime.format(new Date(last!))}. {why}
+          </span>
+        </p>
+      </div>
+    );
+  }
+
+  const days = age === null ? null : Math.floor(age / DAY_MS);
+  return (
+    <div
+      role="alert"
+      className="mt-5 flex gap-3 rounded-xl border border-warn bg-warn-soft px-4 py-3 text-sm"
+    >
+      <span aria-hidden className="font-semibold text-warn">
+        !
+      </span>
+      <p>
+        <span className="font-medium text-warn">
+          {days === null
+            ? "Database keep-alive hasn't run yet."
+            : `Database keep-alive hasn't run in ${days} days.`}
+        </span>{" "}
+        <span className="text-ink">
+          {why} Check Vercel → Settings → Cron Jobs (click Run to test it) and
+          Logs for /api/keepalive.
+        </span>
+      </p>
+    </div>
+  );
+}
+
 function pct(part: number, whole: number) {
   return whole === 0 ? "0%" : `${Math.round((part / whole) * 100)}%`;
 }
@@ -120,15 +174,15 @@ export default async function ChatAdminPage() {
       <header>
         <h1 className="font-display text-4xl text-ink">Chat questions</h1>
         <p className="mt-2 text-sm text-ink-muted">
-          The last {total} questions visitors asked the profile bot. Times are US
-          Eastern. Visitors are anonymous; a conversation is one browser tab.
+          {total === 0
+            ? "No one has asked the profile bot anything yet."
+            : total === 1
+              ? "The one question a visitor has asked the profile bot."
+              : `The last ${total} questions visitors asked the profile bot.`}{" "}
+          Times are US Eastern. Visitors are anonymous; a conversation is one
+          browser tab.
         </p>
-        <p className="mt-1 text-xs text-ink-muted">
-          Database keep-alive last ran:{" "}
-          {lastKeepalive ? dateTime.format(new Date(lastKeepalive)) : "not yet"}{" "}
-          (daily, so Upstash doesn&apos;t delete the free database after 14
-          idle days).
-        </p>
+        <KeepaliveStatus last={lastKeepalive} />
       </header>
 
       <section className="grid gap-3 grid-cols-2 md:grid-cols-4">
