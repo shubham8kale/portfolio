@@ -18,10 +18,12 @@ Two things this repo tries to demonstrate beyond its content:
 ## Architecture
 
 ```
-app/page.tsx            single page: hero → projects → beyond work → contact
+app/page.tsx            home: hero → experience → projects → beyond work → contact
+app/work/[slug]/        one write-up page per lead project (static)
+app/admin/chat/         private view of what visitors ask the bot (Basic auth via proxy.ts)
 app/api/chat/route.ts   SSE proxy → Groq (OpenAI-compatible); key stays server-side
 content/                site.ts + projects.ts (the audit surface) + profile.md (bot grounding)
-lib/chat/               system prompt · request validation · Upstash rate limiting
+lib/chat/               system prompt · request validation · Upstash rate limiting · question log
 ```
 
 Bot guardrails are structural where possible: client names never enter the
@@ -39,7 +41,8 @@ npm run dev
 ```
 
 Without `GROQ_API_KEY` the site runs fine; the chat returns a friendly 503.
-Without Upstash vars, rate limiting no-ops (logged once per instance).
+Without Upstash vars, rate limiting and the question log no-op (logged once
+per instance). Set `ADMIN_PASSWORD` to enable `/admin/chat`.
 
 ## Verified at launch
 

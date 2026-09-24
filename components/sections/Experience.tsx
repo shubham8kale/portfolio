@@ -5,10 +5,10 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 scroll-mt-16">
+    <section id="experience" className="py-20 scroll-mt-20">
       <SectionHeading
-        kicker="The day job"
-        title="Shipped to production, used daily."
+        kicker="Experience"
+        title="The day job."
       />
       <Reveal>
         <article className="border-t border-line py-14 grid gap-10 lg:grid-cols-[1fr_minmax(220px,280px)]">
@@ -19,7 +19,7 @@ export function Experience() {
             <h3 className="font-display text-3xl sm:text-4xl tracking-tight text-ink">
               {experience.role}
             </h3>
-            <p className="mt-2 font-mono text-sm text-ink-muted">
+            <p className="mt-2 text-sm text-ink-muted">
               {experience.employer}
             </p>
             <p className="mt-5 max-w-xl text-ink-muted leading-relaxed">
@@ -40,10 +40,31 @@ export function Experience() {
 
           <aside className="flex flex-row lg:flex-col flex-wrap gap-10 lg:gap-12 lg:border-l lg:border-line lg:pl-10 lg:pt-2">
             {experience.metrics.map((metric) => (
-              <MetricStat key={metric.label} {...metric} />
+              <div key={metric.label} className="min-w-[200px] flex-1 lg:flex-none">
+                <MetricStat {...metric} />
+              </div>
             ))}
           </aside>
         </article>
+
+        {experience.previous.length > 0 && (
+          <div className="border-t border-line pt-10">
+            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-ink-muted">
+              Previously
+            </h3>
+            <ul className="mt-6 grid gap-8 md:grid-cols-2">
+              {experience.previous.map((job) => (
+                <li key={job.employer}>
+                  <p className="font-display text-xl text-ink">{job.role}</p>
+                  <p className="mt-1 text-sm text-ink-muted">
+                    {job.employer} · {job.location}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed">{job.summary}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Reveal>
     </section>
   );

@@ -26,3 +26,6 @@ sensitive.
 - The bot's knowledge is a single public markdown file
   ([content/profile.md](content/profile.md)) — there is no private data behind
   the endpoint to exfiltrate.
+- Visitor questions and the bot's answers are logged to Upstash Redis without
+  IPs or other identifiers, and are readable only at `/admin/chat`, which sits
+  behind HTTP Basic auth (`ADMIN_PASSWORD`) and returns 404 when that is unset.

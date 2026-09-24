@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import { getSystemPrompt } from "@/lib/chat/prompt";
 import { validateBody } from "@/lib/chat/validate";
 import { checkRateLimit } from "@/lib/chat/ratelimit";
+import { logChatTurn, parseMeta } from "@/lib/chat/log";
 
 export const runtime = "nodejs";
 
@@ -51,6 +52,12 @@ async function handleChat(request: Request) {
   }
   const messages = validateBody(body);
   if (!messages) return json(400, "Invalid request.");
+  const meta = parseMeta(body);
+  // Counted from the full client history: validateBody trims it to MAX_TURNS.
+  const turn = (body as { messages: { role: string }[] }).messages.filter(
+    (m) => m.role === "user",
+  ).length;
+  const question = messages[messages.length - 1].content;
 
   if (!process.env.GROQ_API_KEY) {
     return json(
@@ -107,11 +114,14 @@ async function handleChat(request: Request) {
   const encoder = new TextEncoder();
   const readable = new ReadableStream({
     async start(controller) {
+      let answer = "";
+      let status: "ok" | "error" | "aborted" = "ok";
       try {
         for await (const chunk of stream) {
           // Rule 8 asks the model to avoid em/en dashes; this makes it certain.
           const delta = chunk.choices[0]?.delta?.content?.replace(/[—–]/g, "-");
           if (delta) {
+            answer += delta;
             controller.enqueue(
               encoder.encode(`data: ${JSON.stringify({ text: delta })}\n\n`),
             );
@@ -120,6 +130,7 @@ async function handleChat(request: Request) {
         controller.enqueue(encoder.encode("data: [DONE]\n\n"));
       } catch (err) {
         // A client disconnect surfaces here as an abort - that's not an error.
+        status = request.signal.aborted ? "aborted" : "error";
         if (!request.signal.aborted) {
           console.error("[chat] stream error", err);
           controller.enqueue(
@@ -129,7 +140,19 @@ async function handleChat(request: Request) {
           );
         }
       } finally {
-        controller.close();
+        await logChatTurn({
+          t: Date.now(),
+          ...meta,
+          turn,
+          q: question,
+          a: answer,
+          status,
+        });
+        try {
+          controller.close();
+        } catch {
+          // Already cancelled by a client disconnect.
+        }
       }
     },
   });

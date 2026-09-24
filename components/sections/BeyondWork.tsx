@@ -22,9 +22,9 @@ function TacticalBoard() {
       role="img"
       aria-hidden="true"
     >
-      <rect width="300" height="200" fill="var(--pitch)" rx="8" />
+      <rect width="300" height="200" fill="var(--board)" rx="8" />
       {/* chalk lines */}
-      <g stroke="var(--paper)" strokeOpacity="0.45" strokeWidth="1.5" fill="none">
+      <g stroke="var(--chalk)" strokeOpacity="0.45" strokeWidth="1.5" fill="none">
         <rect x="10" y="10" width="280" height="180" rx="2" />
         <line x1="150" y1="10" x2="150" y2="190" />
         <circle cx="150" cy="100" r="26" />
@@ -32,7 +32,7 @@ function TacticalBoard() {
         <rect x="250" y="55" width="40" height="90" />
       </g>
       {/* formation */}
-      <g fill="var(--paper)">
+      <g fill="var(--chalk)">
         {dots.map(([x, y], i) => (
           <circle key={i} cx={x} cy={y} r="5" />
         ))}
@@ -44,7 +44,7 @@ function TacticalBoard() {
 export function BeyondWork() {
   const { football, curiosity } = beyondWork;
   return (
-    <section id="beyond" className="py-20 scroll-mt-16">
+    <section id="beyond" className="py-20 scroll-mt-20">
       <SectionHeading kicker="Beyond work" title="Off the clock." />
       <Reveal>
         <div className="grid gap-6 md:grid-cols-2">

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Metric } from "@/content/projects";
+import { MiniChart } from "./MiniChart";
 
 /** Splits "~67K" → { prefix: "~", num: 67, suffix: "K", decimals: 0 }. */
 function parseValue(value: string) {
@@ -17,7 +18,13 @@ function parseValue(value: string) {
  * the rendered end state is always exactly the `value` string from
  * content/projects.ts.
  */
-export function MetricStat({ value, label, context }: Metric) {
+export function MetricStat({
+  value,
+  label,
+  context,
+  chart,
+  compact = false,
+}: Metric & { compact?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const [display, setDisplay] = useState<string>(value);
   const [started, setStarted] = useState(false);
@@ -57,11 +64,20 @@ export function MetricStat({ value, label, context }: Metric) {
 
   return (
     <div ref={ref}>
-      <p className="font-mono text-4xl sm:text-5xl font-medium text-ink tabular-nums">
+      <p
+        className={`whitespace-nowrap font-mono font-medium text-ink tabular-nums ${
+          compact || value.length > 7 ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"
+        }`}
+      >
         {started ? display : value}
       </p>
       <p className="font-mono text-sm text-pitch mt-1.5">{label}</p>
       <p className="text-xs text-ink-muted mt-1 leading-relaxed">{context}</p>
+      {chart && !compact && (
+        <div className="mt-3">
+          <MiniChart chart={chart} />
+        </div>
+      )}
     </div>
   );
 }

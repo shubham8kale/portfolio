@@ -18,7 +18,7 @@ export const site = {
   // in the hero's "Looking at" line and in content/profile.md, not here.
   role: "AI Engineer",
   pitch:
-    "I build AI and data systems - and publish the evaluations that prove they work.",
+    "I build AI systems and the data pipelines they run on.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   email: "1842shubham@gmail.com",
   github: "https://github.com/shubham8kale",
@@ -33,11 +33,11 @@ export const beyondWork = {
     heading: "Football, always",
     // Page face stays a teaser; the bot names the clubs. (Clubs live in
     // content/profile.md.) Flip to naming them here if desired.
-    body: "A tactics nerd as much as a fan - I watch for shape and pressing structure as much as the result, have played the game in an amateur league, and log serious FIFA hours. Ask the chat bot who I support.",
+    body: "I watch matches for the tactics as much as the result: team shape, how a side presses. I've played in an amateur league and put a lot of hours into FIFA. Ask the chat bot which teams I support.",
   },
   curiosity: {
     heading: "Currently curious about",
-    body: "Broad tech enthusiast - genuinely into technology well beyond the stacks I work in.",
+    body: "Things I'm reading about outside my usual stack.",
     // Rendered as chips; sourced from Shubham's curated bot knowledge.
     items: [
       "LLM observability & tracing",
