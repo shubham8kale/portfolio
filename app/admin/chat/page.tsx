@@ -3,6 +3,7 @@ import { connection } from "next/server";
 import { readChatLog, type ChatLogEntry } from "@/lib/chat/log";
 import { TOPICS, looksUnanswered, topicsFor } from "@/lib/chat/topics";
 import { Markdown } from "@/components/chat/Markdown";
+import { getRedis, KEEPALIVE_KEY } from "@/lib/redis";
 
 /**
  * Private view of what visitors ask the profile bot. Gated by HTTP Basic auth
@@ -56,6 +57,9 @@ export default async function ChatAdminPage() {
   await connection(); // always read fresh at request time
 
   const entries = await readChatLog();
+  const lastKeepalive = await getRedis()
+    ?.get<string>(KEEPALIVE_KEY)
+    .catch(() => null);
 
   if (entries === null) {
     return (
@@ -118,6 +122,12 @@ export default async function ChatAdminPage() {
         <p className="mt-2 text-sm text-ink-muted">
           The last {total} questions visitors asked the profile bot. Times are US
           Eastern. Visitors are anonymous; a conversation is one browser tab.
+        </p>
+        <p className="mt-1 text-xs text-ink-muted">
+          Database keep-alive last ran:{" "}
+          {lastKeepalive ? dateTime.format(new Date(lastKeepalive)) : "not yet"}{" "}
+          (daily, so Upstash doesn&apos;t delete the free database after 14
+          idle days).
         </p>
       </header>
 

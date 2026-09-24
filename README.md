@@ -22,6 +22,7 @@ app/page.tsx            home: hero → experience → projects → beyond work �
 app/work/[slug]/        one write-up page per lead project (static)
 app/admin/chat/         private view of what visitors ask the bot (Basic auth via proxy.ts)
 app/api/chat/route.ts   SSE proxy → Groq (OpenAI-compatible); key stays server-side
+app/api/keepalive/      daily Vercel cron (vercel.json) so free Upstash isn't deleted when idle
 content/                site.ts + projects.ts (the audit surface) + profile.md (bot grounding)
 lib/chat/               system prompt · request validation · Upstash rate limiting · question log
 ```

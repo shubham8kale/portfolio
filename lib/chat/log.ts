@@ -1,4 +1,4 @@
-import { Redis } from "@upstash/redis";
+import { getRedis } from "@/lib/redis";
 
 /**
  * Question log for the profile bot, so Shubham can see what visitors ask
@@ -35,17 +35,6 @@ export type ChatLogEntry = {
 };
 
 export type ChatMeta = { sid: string; source: ChatSource; page: string };
-
-let redis: Redis | null | undefined;
-
-function getRedis(): Redis | null {
-  if (redis !== undefined) return redis;
-  redis =
-    process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-      ? Redis.fromEnv()
-      : null;
-  return redis;
-}
 
 /** Parses the optional, untrusted `meta` field of a chat request. */
 export function parseMeta(body: unknown): ChatMeta {
