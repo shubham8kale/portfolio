@@ -136,10 +136,10 @@ export const leadProjects: Project[] = [
     ],
     image: {
       src: "/work/financial-research-agent.png",
-      alt: "The Financial Research Agent answering a question about Apple's net sales, with the source chunks it used listed underneath.",
+      alt: "The Financial Research Agent answering a question about Apple's net sales: the answer, a Verified badge with the claim and figure counts, the XBRL fact it cited, and the per-query meter line.",
       width: 1560,
-      height: 594,
-      caption: "The live demo answering a question, with the filing chunks it cited.",
+      height: 329,
+      caption: "The live demo answering a question: the answer, its verification verdict, the fact it cited, and the per-query meter.",
     },
     details: [
       {
