@@ -22,7 +22,7 @@
 
 - AI Engineer with roughly two years of experience, based in Pittsburgh, PA.
 - Builds agentic AI systems, applied ML models with measured business impact, and production data platforms, with work spanning healthcare, insurance, finance, and consumer-products domains.
-- Currently an Analytics Engineer shipping production LLM features (Claude API) and client-facing predictive models, alongside ELT pipelines, dimensional models, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
+- Currently an Analytics / AI Engineer shipping production LLM features (Claude API) and client-facing predictive models, alongside ELT pipelines, dimensional models, ingestion frameworks, and analytics platforms for cross-functional and executive stakeholders.
 - Open to AI Engineer, Software Engineer, Data Engineer, and Data Scientist roles, in that order of preference.
 - Contact: 1842shubham@gmail.com · github.com/shubham8kale · linkedin.com/in/shubham8kale
 - He tests what he builds and publishes the results next to each project, including the limitations.
@@ -37,8 +37,9 @@
 Client engagements are described by industry only - client names are
 confidential and never shared.
 
-- **Analytics Engineer, Quantegy Analytics (current role, remote).** Builds production data platforms, LLM features, and BI for healthcare, insurance, and consumer-products clients.
-  - Shipped an LLM-powered navigation assistant (Claude API) into a production analytics platform serving 50+ daily users across 5 markets, routing natural-language queries to the right dashboard via a structured page-catalog context.
+- **Analytics / AI Engineer, Quantegy Analytics (current role, remote).** Builds production data platforms, LLM features, and BI for healthcare, insurance, and consumer-products clients.
+  - Shipped an LLM-powered navigation assistant (Claude API) into a production analytics platform serving 50+ daily users across 5 markets, routing natural-language queries to the right dashboard via a structured page-catalog context. It now answers 150+ questions a day.
+  - Automated client request intake with an idempotent Dagster pipeline: Claude API extracts each incoming email into a Pydantic-validated JSON schema, deduplicated on message id so a rerun files nothing twice, and queues a ticket for human review in a Streamlit ticketing app he also built, with Slack alerts on failure. 100+ requests a month flow through it. He does not claim an accuracy or time-saved figure for it, because none has been measured.
   - Uses Claude Code for most of his day-to-day engineering, including deliverables that go to clients. The concrete example: he moved 5 executive dashboards to Power BI's .pbip text format so that changes made with Claude Code arrive as reviewable diffs in Git code review. This is using an AI coding agent on real work, not building an agent platform or an eval harness, and there is no productivity metric attached to it.
   - Delivered production Streamlit platforms for two clients: a healthcare platform that cut a 3-day Excel reporting cycle to same-day, and separately a correctional-healthcare app with per-county, group-based access control for county and sheriff's-office users.
   - Ranked retail endcap placement across a 420 store chain for a consumer-products client, using a stacked decision-tree and linear-regression ensemble over demographic features engineered from open-source population data at store-area level. The client installed the top 3 predicted stores per region, and those stores posted a 12% first-week sales lift against 0.2% in a matched control group of ranked but uninstalled stores. He also tracked predicted-versus-realized calibration at 61% rather than reporting the forecast as the result, and notes that parallel trends is not yet tested and no significance testing was run.
@@ -50,29 +51,29 @@ confidential and never shared.
   - Scheduled 10+ table ingestion on Airflow (largest table 10M+ records) with pytest/httpx tests on mocked APIs.
   - Secured 2 client environments end to end: AWS IAM/VPN access policies, Secrets Manager credentials, role-based Snowflake access, and PII redaction of credit-card data.
   - He joined here as an intern and carried through part-time to full-time without a break, working across three client verticals at once.
-- **Data Analyst Intern, Mettler-Toledo (Mumbai).** Built an end-to-end RAG system with fine-tuned language models for automated KPI/report commentary, and a rule-based assignment engine that significantly cut manual allocation work.
-- **Quantitative Analyst Intern, Marcellus Investment Managers (Mumbai).** Owned database administration for a research environment end-to-end, and built statistical and machine-learning models for trade-execution optimization and fraud-risk screening.
+- **AI Engineer Intern, Mettler-Toledo (Mumbai).** Built an end-to-end RAG system with T5/BART models fine-tuned on PyTorch through the Hugging Face Trainer, drafting KPI commentary from 10M+ financial records; 85%+ of the drafts were rated relevant in a 40-case review by the team the commentary was written for, saving about 15 hours a month of manual reporting. Also built a rule-based credit-representative assignment engine in KNIME that cut allocation time 50% and saved 30 hours a month.
+- **Quantitative Analyst Intern, Marcellus Investment Managers (Mumbai).** Owned the PostgreSQL research database day to day: loaded vendor Excel exports into raw and merged tables (25 tables, 3M+ rows), managed role-based access, and automated the reconciliation in Python, saving 10 hours a week. Built a regression-based impact-cost model (R-squared 0.82) for trade-execution optimization and a forensic-screening ML ensemble (84% accuracy, 87% specificity) adopted into fraud-risk screening. He did not run the database server itself (backups, partitioning, tuning), so he describes it as owning the database and its data, not database administration.
 
-## Project: AI Auditor (portfolio project; repository and demo are currently access-restricted)
+## Project: Financial Research Agent (portfolio project, live demo available)
+
+- Agentic RAG system that answers natural-language questions about SEC 10-K filings with source-grounded citations, and verifies every answer against its cited sources before serving it.
+- LangChain + LangGraph ReAct agent with five tools (filing search, company list, cross-company comparison, an XBRL fact lookup that takes the fiscal year as an argument, and a calculator), discovered at runtime through a FastMCP (streamable-HTTP Model Context Protocol) server with an in-process fallback; the hosted demo runs the fallback.
+- Retrieval over ChromaDB with 4,783 chunks plus 6,089 XBRL facts from five companies' FY2025 10-K filings: dense search over 50 candidates, then a cross-encoder reranker and an inferred ticker filter. The first index had 67,521 chunks, three-quarters of them XBRL markup rather than 10-K text; it was rebuilt and every number re-measured. Generation via the Gemini API.
+- Verification contract: a second, cheaper model call turns the draft into one claim per sentence with the observations it cites, and plain Python checks that every cited source exists, every figure is cited, every figure appears in a cited observation, and no figure was dropped. One repair attempt, then a refusal that names what could not be verified. On the 71-item benchmark, 70 of 70 served answers verified and 77 of 77 figures were supported; one item hit the recursion limit and was never served. Verification adds about 2.2 seconds and $0.0004 per query.
+- Evaluated on a 71-item labelled benchmark, every answer, retrieved context and score committed to the repository. Judge-free metrics (retrieval hit@5 and a figure check) gate every pull request: 19 retrieval configurations were compared and the shipped one lifted hit@5 from 0.51 to 0.66; a hybrid BM25 retriever was built, measured worse under the reranker, and left switched off. The XBRL fact tools took figure accuracy from 73% to 100% on the benchmark's 45 figure items. RAGAS-judged runs, with terminal failures scored as zero, took faithfulness from 0.83 to 0.95. A judge from a different model family re-scored 20 items and broadly agreed, scoring slightly lower. He notes that n = 71 establishes no statistical significance and that every judged headline is one judge's opinion.
+- An earlier finding: on the previous model, 10 of 66 questions returned an empty answer that passed silently through the agent, the API (HTTP 200), the streaming UI and RAGAS (scored NaN and dropped from the mean, which inflated faithfulness). Empty and recursion-limit answers are now named terminal-failure states guarded at every layer, with 33 tests.
+- FastAPI backend streaming cited answers over Server-Sent Events to a full-stack Next.js/TypeScript chat UI; LangSmith traces every run on the deployed demo and a per-query meter records latency, tokens and cost (about $0.002 and 4 seconds per query all-in). 222 backend tests with GitHub Actions CI and a retrieval-quality gate on every pull request. Frontend on Vercel, backend on Hugging Face Spaces (free tiers).
+- Framed as a portfolio project with a live demo - a demonstration of engineering judgment, not a production system.
+
+## Project: AI Auditor (portfolio project; public repository, live demo requires sign-in)
 
 - An audit preparation and review workspace: five gated stages from client onboarding through expense vouching (onboarding, account mapping, materiality and scope, expense sampling, invoice testing), each producing a draft that a human approves before the next stage can run.
 - The design principle: the AI reads documents and proposes; deterministic Python decides anything that matters. A vision model extracts facts from PDFs, scans and spreadsheets through a strict JSON-schema contract. The model also proposes account mappings and two judgment calls (expense classification and business purpose) for a human to review. Materiality, scoping, sample selection, and the amount, entity and period checks are plain Python with the policy rules encoded. The model is never told the overall conclusion; the code computes it, and it cannot approve a stage.
 - 16 deterministic evidence checks, each carrying its policy source, run on every extracted fact before it can reach a workpaper. Even a fully passing test is recorded as "proposed clean", because sign-off is a human act.
 - Controls live in code: row-level security on all 7 database tables, versioned approvals under row locks, a staleness cascade that marks downstream work stale with a reason whenever something upstream is corrected, and a chat assistant that can propose typed edits with a reason but has no approval operation.
 - Stack: FastAPI and Python, React/TypeScript/Vite, Supabase (PostgreSQL, named authentication, private file storage), a Groq-hosted vision model, one Docker service on Render. 62 tests with GitHub Actions CI.
-- A personal portfolio project. It is not RAG and not an agent: the assistant is handed a bounded context that Python assembled for one engagement. The repository and live demo are currently access-restricted; a public read-only demo is planned.
+- A personal portfolio project. It is not RAG and not an agent: the assistant is handed a bounded context that Python assembled for one engagement. The repository is public; the live demo requires sign-in, and a public read-only demo account is planned.
 - Known limitations: policy thresholds are encoded as one firm's methodology rather than a configurable table; three industries are covered; sampling is judgmental, not statistically projectable; the model is paced to a free API quota.
-
-## Project: Financial Research Agent (portfolio project, live demo available)
-
-- Agentic RAG system that answers natural-language questions about SEC 10-K filings with source-grounded citations.
-- LangChain + LangGraph ReAct agent whose tools are discovered at runtime through a FastMCP (streamable-HTTP Model Context Protocol) server, decoupling agent logic from tool implementations.
-- Retrieval over ChromaDB with roughly 67,000 indexed chunks from five companies' 10-K filings; generation via the Gemini API.
-- Evaluated on a 71-item labelled benchmark with RAGAS, every answer, retrieved context and score committed to the repository. Two full runs of 66 items with the agent model as the only variable: faithfulness rose from 0.71 to 0.88, and terminal failures (empty or recursion-limit answers) fell from 12 answers to 6 answers out of 66 (these are counts, not percentages). Failures were counted as zero rather than excluded. A cross-family judge check (a Groq-hosted judge re-scoring 20 items) broadly agreed with the Gemini judge and was slightly harsher.
-- The evaluation's headline finding: on the earlier model, 10 of 66 questions returned an empty answer that passed silently through the agent, the API (HTTP 200), the streaming UI (a blank message with citations attached) and RAGAS (scored NaN and dropped from the mean, which inflated faithfulness). That is now a named terminal-failure state guarded at every layer, with 33 tests. He notes that n = 66 establishes no statistical significance and that most of the headline gain is failure elimination rather than better answers on questions that already worked.
-- Deployed as a two-service FastAPI + MCP microservice on Docker Compose, with CI via GitHub Actions running 85 backend tests. The hosted demo runs a single container and serves every request through the in-process agent (the MCP path is exercised locally).
-- Full-stack Next.js/TypeScript chat UI streaming answers live over Server-Sent Events.
-- Framed as a portfolio project with a live demo - a demonstration of engineering judgment, not a production system.
 
 ## Project: Grid Resilience (portfolio project)
 
@@ -92,7 +93,7 @@ confidential and never shared.
 
 Python, Java, C/C++, R, SQL, JavaScript, TypeScript, Bash. Generative AI:
 Claude API, Gemini API, Groq API, LangChain, LangGraph, FastMCP, ChromaDB, RAGAS, RAG,
-LLM agents, MCP, structured outputs, LLM evaluation, fine-tuning. ML/DL: PyTorch, TensorFlow, scikit-learn,
+LLM agents, MCP, structured outputs, LLM evaluation, LLM observability (LangSmith), fine-tuning. ML/DL: PyTorch, TensorFlow, scikit-learn,
 XGBoost, Hugging Face. Data engineering: Snowflake, Redshift, BigQuery,
 PostgreSQL, MongoDB, Apache Kafka, Apache Airflow, Dagster, dbt, Spark. Cloud &
 infra: AWS (S3, Redshift, IAM), Azure, GCP, Docker, Kubernetes, GitHub Actions

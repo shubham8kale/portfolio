@@ -25,12 +25,13 @@ export type Experience = {
 
 export const experience: Experience = {
   framing: "Current role · LLM features, applied ML, data pipelines",
-  role: "Analytics Engineer",
+  role: "Analytics / AI Engineer",
   employer: "Quantegy Analytics · Consulting",
   summary:
-    "Consulting work for healthcare, insurance, and consumer-products clients, mostly on three things: an LLM assistant people use every day, a store-placement model tested against a control group, and the data pipelines both depend on.",
+    "Consulting work for healthcare, insurance, and consumer-products clients, mostly on three things: LLM features people use every day, a store-placement model tested against a control group, and the data pipelines both depend on.",
   highlights: [
-    "Shipped an LLM navigation assistant (Claude API) inside a client's analytics platform. Users ask a question in plain English and it sends them to the right dashboard, using a structured catalog of pages.",
+    "Shipped an LLM navigation assistant (Claude API) inside a client's analytics platform. Users ask a question in plain English and it sends them to the right dashboard, using a structured catalog of pages. It now answers 150+ questions a day.",
+    "Automated client request intake: a Dagster pipeline reads each incoming email, Claude API extracts it into a Pydantic-validated JSON schema, and a ticket is queued for human review in a Streamlit app. Deduplicated on message id so a rerun files nothing twice, with a Slack alert on failure; 100+ requests a month.",
     "Ranked stores in a 420-store retail chain for endcap placement, for a consumer-products client, using a stacked decision-tree and linear-regression ensemble on engineered demographic features. Measured the rollout against ranked stores that didn't get the endcap.",
     "Moved 5 executive dashboards to Power BI's .pbip text format so edits made with Claude Code show up as reviewable Git diffs. Claude Code is part of most of my day-to-day client work.",
     "Built Dagster ELT jobs that move patient and financial records from 15+ Redshift tables into Snowflake.",
@@ -41,7 +42,7 @@ export const experience: Experience = {
     {
       value: "50+",
       label: "daily users",
-      context: "LLM navigation assistant, across 5 markets",
+      context: "analytics platform across 5 markets; its LLM assistant answers 150+ questions a day",
     },
     {
       value: "4M+",
@@ -69,18 +70,18 @@ export const experience: Experience = {
   ],
   previous: [
     {
-      role: "Data Analyst Intern",
+      role: "AI Engineer Intern",
       employer: "Mettler-Toledo",
       location: "Mumbai",
       summary:
-        "Built a RAG system with fine-tuned language models that drafted commentary for KPI reports, plus a rule-based engine that cut manual allocation work.",
+        "Built a RAG system with T5/BART models fine-tuned on PyTorch that drafted commentary for KPI reports, plus a rule-based engine that cut manual allocation work.",
     },
     {
       role: "Quantitative Analyst Intern",
       employer: "Marcellus Investment Managers",
       location: "Mumbai",
       summary:
-        "Ran database administration for a research environment and built statistical and machine-learning models for trade-execution optimization and fraud-risk screening.",
+        "Owned the PostgreSQL research database day to day (loading, schema, access, reconciliation automation) and built statistical and machine-learning models for trade-execution optimization and fraud-risk screening.",
     },
   ],
 };

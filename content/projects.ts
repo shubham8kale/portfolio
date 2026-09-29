@@ -78,6 +78,99 @@ export type Project = {
 
 export const leadProjects: Project[] = [
   {
+    slug: "financial-research-agent",
+    title: "Financial Research Agent",
+    tagline: "An agent that answers questions about SEC 10-K filings and verifies every answer against its sources before serving it.",
+    framing: "Portfolio project - full-stack agentic RAG with verified answers and a published evaluation",
+    problem:
+      "An agent that answers research questions from SEC 10-K filings, checks each answer against the evidence it cited before serving it, and a benchmark that measures how often it gets the figures right.",
+    built: [
+      "LangGraph ReAct agent with five tools (filing search, company list, cross-company compare, XBRL fact lookup, calculator), served over an MCP server with an in-process fallback",
+      "ChromaDB retrieval over 4,783 chunks plus 6,089 XBRL facts from five companies' 10-K filings: dense search over 50 candidates, then a cross-encoder reranker",
+      "A verification contract: each served answer is split into cited claims and checked deterministically, with no model in the loop; an answer that fails is repaired once or refused",
+      "71-item labelled benchmark: judge-free retrieval and figure checks gate every pull request, RAGAS-judged runs when a change is worth the spend",
+      "FastAPI backend streaming over SSE to a Next.js/TypeScript UI, LangSmith tracing and a per-query cost meter, 222 backend tests in GitHub Actions CI",
+    ],
+    metrics: [
+      {
+        value: "0.83 → 0.95",
+        label: "faithfulness",
+        context: "RAGAS on the 71-item benchmark, dense baseline to fact tools, terminal failures scored as zero",
+        chart: { kind: "change", from: 0.83, to: 0.95, max: 1, better: "higher" },
+      },
+      {
+        value: "73% → 100%",
+        label: "figure accuracy",
+        context: "on the benchmark's 45 figure items, after adding the XBRL fact tools",
+        chart: { kind: "change", from: 73, to: 100, max: 100, better: "higher" },
+      },
+      {
+        value: "70 / 70",
+        label: "answers verified",
+        context: "every served answer passed the figure and citation checks; 1 of 71 items was a named failure and never served",
+      },
+    ],
+    stack: [
+      "LangGraph",
+      "MCP",
+      "ChromaDB",
+      "RAGAS",
+      "LangSmith",
+      "FastAPI",
+      "Docker Compose",
+      "GitHub Actions",
+      "Next.js",
+      "TypeScript",
+    ],
+    links: [
+      {
+        label: "Repository",
+        href: "https://github.com/shubham8kale/financial-research-agent",
+        kind: "repo",
+      },
+      {
+        label: "Live demo",
+        href: "https://financial-research-agent-pi.vercel.app/",
+        kind: "demo",
+      },
+    ],
+    image: {
+      src: "/work/financial-research-agent.png",
+      alt: "The Financial Research Agent answering a question about Apple's net sales, with the source chunks it used listed underneath.",
+      width: 1560,
+      height: 594,
+      caption: "The live demo answering a question, with the filing chunks it cited.",
+    },
+    details: [
+      {
+        heading: "How it works",
+        body: [
+          "A LangGraph ReAct agent finds its tools at runtime from a FastMCP server over streamable HTTP, so the agent logic and the tool code are kept separate. Five tools: filing search, the company list, a cross-company comparison, an XBRL fact lookup that takes the fiscal year as an argument, and a calculator.",
+          "Retrieval is dense search over 50 candidates, reranked by a cross-encoder and filtered to the inferred ticker. Answers are generated with the Gemini API and streamed to the Next.js UI over Server-Sent Events.",
+          "Before an answer is served, a second model call turns it into one claim per sentence with the observations it cites, and plain Python checks each figure against those observations. An answer that fails gets one repair attempt, then a refusal that names what could not be verified.",
+          "Locally it runs as two services (FastAPI and the MCP server) on Docker Compose. The hosted demo runs a single container with the agent in-process. LangSmith traces every run.",
+        ],
+      },
+      {
+        heading: "How it was tested",
+        body: [
+          "A 71-item labelled benchmark over five FY2025 10-K filings, with every answer, retrieved context, and score committed to the repository.",
+          "Judge-free metrics come first: retrieval hit@5 and a figure check run on every pull request. 19 retrieval configurations were compared this way, and the shipped one lifted hit@5 from 0.51 to 0.66. A hybrid BM25 retriever was built, measured worse under the reranker, and left switched off.",
+          "RAGAS-judged runs happen when a change is worth the spend, with failed answers counted as zero instead of dropped. A judge from a different model family re-scored a sample and broadly agreed, scoring slightly lower.",
+        ],
+      },
+      {
+        heading: "What the evaluation found",
+        body: [
+          "Numeric questions failed on retrieval, not generation: the prior year's figure sits in the same context and the model picks the wrong column. Making the fiscal year a lookup argument closed that class, and figure accuracy went from 73% to 100% on the 45 figure items.",
+          "Three-quarters of the first index was XBRL markup rather than 10-K text. Rebuilding it cut 67,521 chunks to 4,783, and every number was re-measured on the new index.",
+          "Earlier, some questions came back with an empty answer that passed silently through every layer: the agent, the API (HTTP 200), the streaming UI, and RAGAS, which scored it NaN and left it out of the average. Empty and recursion-limit answers are now named failure states, checked at every layer and covered by 33 tests.",
+          "The sample is too small to claim statistical significance, and every judged headline number is one judge's opinion.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "ai-auditor",
     title: "AI Auditor",
     tagline: "An audit workspace where an LLM reads the documents and people approve the work.",
@@ -158,96 +251,6 @@ export const leadProjects: Project[] = [
           "Only a few industries are covered.",
           "Sampling is judgmental, so results can't be projected statistically to the full population.",
           "The model is rate-paced to fit a free API quota.",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "financial-research-agent",
-    title: "Financial Research Agent",
-    tagline: "An agent that answers questions about SEC 10-K filings, tested with a RAGAS benchmark.",
-    framing: "Portfolio project - full-stack agentic RAG with a published evaluation",
-    problem:
-      "An agent that answers research questions from SEC 10-K filings, plus a benchmark that checks whether its answers match what the filings say.",
-    built: [
-      "LangGraph ReAct agent that discovers its tools at runtime from an MCP server",
-      "ChromaDB retrieval over ~67K chunks from five companies' 10-K filings",
-      "71-item labelled RAGAS benchmark with per-item results committed, a cross-family judge check, and terminal failures counted as zero",
-      "FastAPI backend, Docker Compose deployment, GitHub Actions CI",
-      "Next.js/TypeScript UI with SSE token streaming",
-    ],
-    metrics: [
-      {
-        value: "0.71 → 0.88",
-        label: "faithfulness",
-        context: "RAGAS, 66 items, agent model the only variable, failures counted as zero",
-        chart: { kind: "change", from: 0.71, to: 0.88, max: 1, better: "higher" },
-      },
-      {
-        value: "12 → 6",
-        label: "terminal failures",
-        context: "empty or recursion-limit answers, out of 66, after the model swap",
-        chart: { kind: "change", from: 12, to: 6, max: 66, better: "lower" },
-      },
-      {
-        value: "~67K",
-        label: "indexed chunks",
-        context: "ChromaDB, across 5 companies",
-      },
-    ],
-    stack: [
-      "LangGraph",
-      "MCP",
-      "ChromaDB",
-      "RAGAS",
-      "FastAPI",
-      "Docker Compose",
-      "GitHub Actions",
-      "Next.js",
-      "TypeScript",
-    ],
-    links: [
-      {
-        label: "Repository",
-        href: "https://github.com/shubham8kale/financial-research-agent",
-        kind: "repo",
-      },
-      {
-        label: "Live demo",
-        href: "https://financial-research-agent-pi.vercel.app/",
-        kind: "demo",
-      },
-    ],
-    image: {
-      src: "/work/financial-research-agent.png",
-      alt: "The Financial Research Agent answering a question about Apple's net sales, with the source chunks it used listed underneath.",
-      width: 1560,
-      height: 594,
-      caption: "The live demo answering a question, with the filing chunks it cited.",
-    },
-    details: [
-      {
-        heading: "How it works",
-        body: [
-          "A LangGraph ReAct agent finds its tools at runtime from a FastMCP server over streamable HTTP, so the agent logic and the tool code are kept separate.",
-          "Retrieval runs over ChromaDB and answers are generated with the Gemini API. The Next.js UI streams tokens over Server-Sent Events.",
-          "Locally it runs as two services (FastAPI and the MCP server) on Docker Compose. The hosted demo runs a single container with the agent in-process.",
-        ],
-      },
-      {
-        heading: "How it was tested",
-        body: [
-          "A 71-item labelled RAGAS benchmark, with every answer, retrieved context, and score committed to the repository.",
-          "Two full runs with the agent model as the only change. Failed answers count as zero instead of being dropped from the average.",
-          "A judge from a different model family re-scored a sample of answers. It broadly agreed with the main judge and scored slightly lower.",
-        ],
-      },
-      {
-        heading: "What the evaluation found",
-        body: [
-          "On the earlier model, some questions came back with an empty answer that passed silently through every layer: the agent, the API (HTTP 200), the streaming UI (a blank message with citations attached), and RAGAS, which scored it NaN and left it out of the average. That made faithfulness look better than it was.",
-          "Empty answers are now a named failure state, checked at every layer.",
-          "Most of the improvement comes from removing failures, not from better answers to questions that already worked. The sample is also too small to claim statistical significance.",
         ],
       },
     ],
