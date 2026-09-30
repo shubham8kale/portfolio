@@ -52,11 +52,11 @@ export const experience: Experience = {
     {
       value: "12%",
       label: "first-week sales lift",
-      context: "endcap placement model, vs 0.2% in matched control stores",
+      context: "endcap placement model, vs 0.25% in same-region control stores",
       chart: {
         kind: "versus",
         value: 12,
-        baseline: 0.2,
+        baseline: 0.25,
         valueLabel: "endcap stores",
         baselineLabel: "control stores",
         unit: "%",

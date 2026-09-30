@@ -80,8 +80,8 @@ export const leadProjects: Project[] = [
   {
     slug: "financial-research-agent",
     title: "Financial Research Agent",
-    tagline: "An agent that answers questions about SEC 10-K filings and verifies every answer against its sources before serving it.",
-    framing: "Portfolio project - full-stack agentic RAG with verified answers and a published evaluation",
+    tagline: "An agent that answers questions about SEC 10-K filings and checks every figure against its cited source before serving an answer.",
+    framing: "Portfolio project - full-stack agentic RAG with citation checks and a published evaluation",
     problem:
       "An agent that answers research questions from SEC 10-K filings, checks each answer against the evidence it cited before serving it, and a benchmark that measures how often it gets the figures right.",
     built: [
@@ -106,7 +106,7 @@ export const leadProjects: Project[] = [
       },
       {
         value: "70 / 70",
-        label: "answers verified",
+        label: "answers passed checks",
         context: "every served answer passed the figure and citation checks; 1 of 71 items was a named failure and never served",
       },
     ],
