@@ -30,8 +30,8 @@ export const experience: Experience = {
   summary:
     "Consulting work for healthcare, insurance, and consumer-products clients, mostly on three things: LLM features people use every day, a store-placement model tested against a control group, and the data pipelines both depend on.",
   highlights: [
-    "Shipped an LLM navigation assistant (Claude API) inside a client's analytics platform. Users ask a question in plain English and it sends them to the right dashboard, using a structured catalog of pages. It now answers 150+ questions a day.",
-    "Automated client request intake: a Dagster pipeline reads each incoming email, Claude API extracts it into a Pydantic-validated JSON schema, and a ticket is queued for human review in a Streamlit app. Deduplicated on message id so a rerun files nothing twice, with a Slack alert on failure; 100+ requests a month.",
+    "Shipped an LLM navigation assistant (Claude API) inside a client's analytics platform. Users ask a question in plain English and it sends them to the right dashboard, using a structured catalog of pages. It now answers 150+ questions a day, and on a random sample of 50 logged questions it picked the right page for 46.",
+    "Automated client request intake: a Dagster pipeline reads each incoming email, Claude API extracts it into a Pydantic-validated JSON schema, and a ticket is queued for human review in a Streamlit app. Deduplicated on message id so a rerun files nothing twice, with a Slack alert on failure; 100+ requests a month, and 29 of 30 randomly sampled tickets passed review with no edit.",
     "Ranked stores in a 420-store retail chain for endcap placement, for a consumer-products client, using a stacked decision-tree and linear-regression ensemble on engineered demographic features. Measured the rollout against ranked stores that didn't get the endcap.",
     "Moved 5 executive dashboards to Power BI's .pbip text format so edits made with Claude Code show up as reviewable Git diffs. Claude Code is part of most of my day-to-day client work.",
     "Built Dagster ELT jobs that move patient and financial records from 15+ Redshift tables into Snowflake.",
@@ -65,7 +65,7 @@ export const experience: Experience = {
     {
       value: "~5x",
       label: "extraction throughput",
-      context: "parallel ingestion framework, adopted by 4 client teams",
+      context: "a full load went from 3 hours to under 45 minutes; 4 client teams adopted it",
     },
   ],
   previous: [
