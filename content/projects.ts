@@ -85,18 +85,18 @@ export const leadProjects: Project[] = [
     problem:
       "An agent that answers research questions from SEC 10-K filings, checks each answer against the evidence it cited before serving it, and a benchmark that measures how often it gets the figures right.",
     built: [
-      "LangGraph ReAct agent with five tools (filing search, company list, cross-company compare, XBRL fact lookup, calculator), served over an MCP server with an in-process fallback",
+      "LangGraph ReAct agent with five tools (filing search, company list, cross-company compare, XBRL fact lookup, calculator), served over an MCP server with an in-process fallback; per-thread conversation memory for follow-up questions, in process and bounded",
       "ChromaDB retrieval over 4,783 chunks plus 6,089 XBRL facts from five companies' 10-K filings: dense search over 50 candidates, then a cross-encoder reranker",
       "A verification contract: each served answer is split into cited claims and checked deterministically, with no model in the loop; an answer that fails is repaired once or refused",
       "71-item labelled benchmark: judge-free retrieval and figure checks gate every pull request, RAGAS-judged runs when a change is worth the spend",
-      "FastAPI backend streaming over SSE to a Next.js/TypeScript UI, LangSmith tracing and a per-query cost meter, 222 backend tests in GitHub Actions CI",
+      "FastAPI backend streaming over SSE to a Next.js/TypeScript UI, LangSmith tracing and a per-query meter (p50 2.8 s, about $0.002 per query on the shipped run), 362 backend tests in GitHub Actions CI, 33 of them on failure paths",
     ],
     metrics: [
       {
-        value: "0.83 → 0.95",
+        value: "0.83 → 0.94",
         label: "faithfulness",
-        context: "RAGAS on the 71-item benchmark, dense baseline to fact tools, terminal failures scored as zero",
-        chart: { kind: "change", from: 0.83, to: 0.95, max: 1, better: "higher" },
+        context: "RAGAS on the 71-item benchmark, dense baseline to the shipped configuration, terminal failures scored as zero",
+        chart: { kind: "change", from: 0.83, to: 0.94, max: 1, better: "higher" },
       },
       {
         value: "73% → 100%",
@@ -105,9 +105,9 @@ export const leadProjects: Project[] = [
         chart: { kind: "change", from: 73, to: 100, max: 100, better: "higher" },
       },
       {
-        value: "70 / 70",
+        value: "71 / 71",
         label: "answers passed checks",
-        context: "every served answer passed the figure and citation checks; 1 of 71 items was a named failure and never served",
+        context: "every answer on the shipped run of the 71-item benchmark passed figure-to-source matching and citation validation; the checks verify sourcing against the retrieved evidence, not correctness",
       },
     ],
     stack: [
@@ -148,6 +148,7 @@ export const leadProjects: Project[] = [
           "A LangGraph ReAct agent finds its tools at runtime from a FastMCP server over streamable HTTP, so the agent logic and the tool code are kept separate. Five tools: filing search, the company list, a cross-company comparison, an XBRL fact lookup that takes the fiscal year as an argument, and a calculator.",
           "Retrieval is dense search over 50 candidates, reranked by a cross-encoder and filtered to the inferred ticker. Answers are generated with the Gemini API and streamed to the Next.js UI over Server-Sent Events.",
           "Before an answer is served, a second model call turns it into one claim per sentence with the observations it cites, and plain Python checks each figure against those observations. An answer that fails gets one repair attempt, then a refusal that names what could not be verified.",
+          "A follow-up question carries the earlier turns of its conversation through a thread id. The memory is in process and bounded (a few turns, cleared after idle time and on restart), and every figure in a follow-up is still retrieved and checked in its own turn; nothing is answered from memory.",
           "Locally it runs as two services (FastAPI and the MCP server) on Docker Compose. The hosted demo runs a single container with the agent in-process. LangSmith traces every run.",
         ],
       },
@@ -157,6 +158,8 @@ export const leadProjects: Project[] = [
           "A 71-item labelled benchmark over five FY2025 10-K filings, with every answer, retrieved context, and score committed to the repository.",
           "Judge-free metrics come first: retrieval hit@5 and a figure check run on every pull request. 19 retrieval configurations were compared this way, and the shipped one lifted hit@5 from 0.51 to 0.66. A hybrid BM25 retriever was built, measured worse under the reranker, and left switched off.",
           "RAGAS-judged runs happen when a change is worth the spend, with failed answers counted as zero instead of dropped. A judge from a different model family re-scored a sample and broadly agreed, scoring slightly lower.",
+          "Tool calls are measured too. The meter records every call's arguments and errors, and 71 items were labelled before any result was read for the acceptable first tool and the allowed set. The shipped run makes 119 tool calls with none rejected (the baseline had 7 rejected, every one a dropped required argument, fixed by wording the tool description where the model reads it), and the first call matches its label on 67 of 71 items. An explicit batching rule was measured: it cut model calls and broke one answer that no judge-free metric could see, so it ships off.",
+          "Memory was probed on 8 small conversations: 11 of 11 follow-ups answered correctly with memory, 3 of 11 without it. The probe shows the mechanism works; it is too small to estimate a rate.",
         ],
       },
       {
