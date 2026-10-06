@@ -136,10 +136,10 @@ export const leadProjects: Project[] = [
     ],
     image: {
       src: "/work/financial-research-agent.png",
-      alt: "The Financial Research Agent answering a question about Apple's net sales: the answer, a Verified badge with the claim and figure counts, the XBRL fact it cited, and the per-query meter line.",
-      width: 1560,
-      height: 329,
-      caption: "The live demo answering a question: the answer, its verification verdict, the fact it cited, and the per-query meter.",
+      alt: "The Financial Research Agent answering 'Can you compare Apple and Google?': the markdown answer with both companies' revenue figures, a Verified badge (12 claims, 2 of 2 figures found in cited sources), the cited sources, the per-query meter line, and the note that follow-up questions are remembered for the session.",
+      width: 1526,
+      height: 2145,
+      caption: "The live demo after a cross-company comparison: the verified answer, the sources it cited, and the per-query meter. A five-tool comparison on the free-tier host runs 31.7 s and $0.0054; the benchmark's p50 of 2.8 s is a single-company question measured on a laptop.",
     },
     details: [
       {
